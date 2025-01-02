@@ -1,61 +1,27 @@
-# CadEditor
+# CadEditorBucky
 
-<b>Building</b>
-Build all projects from CadEditor.sln solution
+Fork of https://github.com/spiiin/CadEditor (obviously). Shout out to spiiin and all other original contributors!
 
-<b>Running</b>
-Run CadEditor.exe, select config file for game that you want to open and select ROM file to edit (ROM files must be downloaded separately).
+## Objectives
 
-Important: if you download release archive from github, you must unblock it for correct running EXE and DLL files https://blogs.msdn.microsoft.com/delay/p/unblockingdownloadedfile/
-More explanations: http://www.romhacking.net/forum/index.php?topic=17150.msg356786#msg356786
-You can use installer to avoid this problem.
+### Main
 
-<b>CadEditor</b> is a universal level editor and some romhacking tools for many different games for NES and SMD platform.<br>
-Some of them:
-<pre>Chip &amp; Dale 1-2, 
-Darkwing Duck,
-Duck Tales 1-2
-MegaMan 3-5
-Tale Spin
-Little Mermaid
-Jungle Book
-Flintstones
-Contra Hard Corps
-Earth Worm Jim 1-2
-Pitfall
-etc.</pre>
-There are more than 2000 configs for more than 200 games.<br>
-Configs are simple C# files, and they have simple structure, so new games can be added with no problems.<br>
-Full list of supported games:<br>
-https://github.com/spiiin/CadEditor/blob/master/CadEditor/cad_editor_supported_games.txt
+To create a level editor that is tailored specifically to NES game Bucky O'Hare for my own hacking purposes.
 
-CadEditor can be built with Visual Studio or Mono, it can be run on Windows, Linux and MacOS platform.<br>
-(but only Windows platform tested now)
+### Detailed
 
-<b>More info</b><br>
-http://spiiin.github.io/CadEditor/<br>
-Documentation<br>
-Articles about level formats<br>
-Romhacking info<br>
-(russian version)<br>
+- Source all data directly from the ROM. The way it works now is using premade bin files based on the original ROM, so if you make any changes that you actually want to see in the editor, you have to recreate the bins.
+- Some levels do not load correctly; fix these if possible
+- Strip down the code to essentials to make it easier for my personal understanding
+- Make it function with newer .NET framework, Visual Studio version, etc.
+- Stretch goal - modernize and clarify some aspects of the user experience
 
-<b>Patreon page of editor</b><br>
-https://www.patreon.com/CadEditor<br>
-<a href="https://www.patreon.com/bePatron?u=3158003" data-patreon-widget-type="become-patron-button">Become a Patron!</a>
+## Usage
 
-<b>Project on itch.io</b><br>
-https://spiiin.itch.io/cadeditor
+### Building and Running
 
-<b>project on Fundition.io</b><br>
-https://fundition.io/#!/@pinkwonder/94dye4s9a
+Currently I am not publishing any releases and building it myself. I build the CadEditor.sln solution to get all dependent binaries built. Then it should run from the .exe, or directly in VS debug mode.
 
-<b>Screenshots</b><br>
-<img src="http://spiiin.github.io/CadEditor/images/tut1_cad_editor_main.png"/>
+### Using the Editor
 
-<img src="https://user-images.githubusercontent.com/1622049/29832521-2a975efa-8cf1-11e7-8b98-46acef1ce36f.png"/>
-
-<img src="https://raw.githubusercontent.com/spiiin/CadEditor/master/docs/images/cad_editor_mac.png" />
-
-
-<b>Latest release</b><br>
-https://github.com/spiiin/CadEditor/releases
+Currently functions the same as the original editor, minus the configurations for other games. I will update this section if I change how it functions.
