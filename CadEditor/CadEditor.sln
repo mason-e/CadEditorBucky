@@ -12,11 +12,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginMapEditor", "..\Plugi
 		{BD2A990C-9D64-472D-9C78-1429C666604B} = {BD2A990C-9D64-472D-9C78-1429C666604B}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginLevelParamsCad", "..\PluginLevelParamsCad\PluginLevelParamsCad.csproj", "{3A8AEE96-DA24-41FE-BAC5-DAAE7843D4BD}"
-	ProjectSection(ProjectDependencies) = postProject
-		{BD2A990C-9D64-472D-9C78-1429C666604B} = {BD2A990C-9D64-472D-9C78-1429C666604B}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginVideoNes", "..\PluginVideoNes\PluginVideoNes.csproj", "{B941BC5F-B083-42D1-905F-665EB708A272}"
 	ProjectSection(ProjectDependencies) = postProject
 		{BD2A990C-9D64-472D-9C78-1429C666604B} = {BD2A990C-9D64-472D-9C78-1429C666604B}
