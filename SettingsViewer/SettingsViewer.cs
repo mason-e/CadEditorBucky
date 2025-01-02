@@ -20,8 +20,6 @@ namespace SettingsViewer
             InitializeComponent();
             var globalSettings = CSScript.GlobalSettings;
             globalSettings.AddSearchDir("./settings_nes");
-            globalSettings.AddSearchDir("./settings_smd");
-            globalSettings.AddSearchDir("./settings_gba");
         }
 
         private void tbConfigName_Click(object sender, EventArgs e)
@@ -152,12 +150,6 @@ namespace SettingsViewer
         public MethodDelegate getWordLen => get();
         [Category("Screen params")]
         public MethodDelegate isLittleEndian => get();
-        [Category("GameBoy graphics")]
-        public MethodDelegate isUsGbGraphics => get();
-        [Category("Sega graphics")]
-        public MethodDelegate isUseSegaGraphics => get();
-        [Category("Sega graphics")]
-        public MethodDelegate isBlockSize4x4 => get();
         [Category("Screen params")]
         public MethodDelegate isBuildScreenFromSmallBlocks => get();
         [Category("Level recs")]
@@ -204,10 +196,6 @@ namespace SettingsViewer
         public MethodDelegate setBigBlocksFunc => get();
         [Category("BigBlocks funcs")]
         public MethodDelegate getBigBlocksAddrFunc => get();
-        [Category("Sega blocks funcs")]
-        public MethodDelegate getSegaMappingFunc => get();
-        [Category("Sega blocks funcs")]
-        public MethodDelegate setSegaMappingFunc => get();
         [Category("Blocks funcs")]
         public MethodDelegate getBlocksFunc => get();
         [Category("Blocks funcs")]
@@ -238,14 +226,6 @@ namespace SettingsViewer
         public MethodDelegate setBigTileToScreenFunc => get();
         [Category("Objects funcs")]
         public MethodDelegate getObjectDictionaryFunc => get();
-        [Category("Sega back funcs")]
-        public MethodDelegate loadSegaBackFunc => get();
-        [Category("Sega back funcs")]
-        public MethodDelegate saveSegaBackFunc => get();
-        [Category("Sega back params")]
-        public MethodDelegate getSegaBackWidth => get();
-        [Category("Sega back params")]
-        public MethodDelegate getSegaBackHeight => get();
         [Category("Render objects params")]
         public MethodDelegate getDrawObjectFunc => get();
         [Category("Render objects params")]

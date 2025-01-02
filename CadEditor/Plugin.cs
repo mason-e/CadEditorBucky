@@ -63,26 +63,4 @@ namespace CadEditor
 
         string getName();
     }
-
-    public interface IVideoPluginGb
-    {
-        Image[] makeBigBlocks(byte[] ppuData, byte[] tiles, byte[] pallette, int count, MapViewType curViewType = MapViewType.Tiles);
-        Color[] getPalette(byte[] pal);
-        Bitmap getTile(byte[] ppuData, Color[] palette, int no);
-        Bitmap getTilesRectangle(byte[] ppuData, Color[] palette);
-        string getName();
-    }
-
-    public interface IVideoPluginSega
-    {
-        Image[] makeBigBlocks(byte[] mapping, byte[] tiles, byte[] palette, int count, MapViewType curViewType = MapViewType.Tiles);
-        Color[] getPalette(byte[] pal);
-        Bitmap getTileFromArray(byte[] tiles, ref int position, Color[] palette, byte palIndex);
-        Bitmap getTileFrom2ColorArray(byte[] tiles, ref int position);
-        byte[] getArrayFrom2ColorTile(Bitmap tile);
-        byte[] getArrayFrom2ColorBlock(Bitmap block);
-        Bitmap getTile(byte[] tiles, ushort word, Color[] palette, byte palIndex, bool hf, bool vf);
-
-        string getName();
-    }
 }

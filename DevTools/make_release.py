@@ -28,9 +28,6 @@ COPY_FOLDER_LIST = [
   "scroll_sprites/",
   "shared_settings/",
   "settings_nes/",
-  "settings_smd/",
-  "settings_gb/",
-  "settings_gba/",
   "bt_objects/", #copied from PluginBattetoadsRaceEditor
 ]
 

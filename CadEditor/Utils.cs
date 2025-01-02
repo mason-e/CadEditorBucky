@@ -69,19 +69,11 @@ namespace CadEditor
 
         public static byte[] getPalleteLinear(int palIndex)
         {
-            int palSize = ConfigScript.isUseSegaGraphics() ? Globals.segaPalLen : Globals.palLen; //isUseGbGraphics
+            int palSize = Globals.palLen;
             var palette = new byte[palSize];
             int addr = ConfigScript.palOffset.beginAddr + palIndex * ConfigScript.palOffset.recSize;
-            if (!ConfigScript.isUseSegaGraphics())
-            {
-                for (int i = 0; i < palSize; i++)
-                    palette[i] = (byte)(Globals.romdata[addr + i] & 0x3F);
-            }
-            else
-            {
-                for (int i = 0; i < palSize; i++)
-                    palette[i] = Globals.romdata[addr + i];
-            }
+            for (int i = 0; i < palSize; i++)
+                palette[i] = Globals.romdata[addr + i];
             return palette;
         }
 
@@ -421,7 +413,7 @@ namespace CadEditor
                 tileSize = ConfigScript.isBlockSize4x4() ? 16 : 4;
             }
 
-            int wordSize = ConfigScript.isUseSegaGraphics() ? 2 : 1;
+            int wordSize = 1;
             int size = ConfigScript.getBigBlocksCount(hierLevel, bigTileIndex) * tileSize * wordSize;
 
             byte[] bigBlockIndexes = new byte[size];

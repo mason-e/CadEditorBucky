@@ -22,9 +22,6 @@ namespace CadEditor
     public delegate int GetBigBlocksAddrFunc(int bigBlockId);
     public delegate int GetBigBlocksCountFunc(int hierLevel, int bigBlockId);
 
-    public delegate byte[] GetSegaMappingFunc(int bigBlockId);
-    public delegate void   SetSegaMappingFunc(int bigTileIndex, byte[] bigBlocks);
-
     public delegate byte[] GetPalFunc(int palId);
     public delegate void   SetPalFunc(int palId, byte[] pallete);
 
@@ -46,9 +43,6 @@ namespace CadEditor
     public delegate int  GetBigTileNoFromScreenFunc(int[] screenData, int index);
     public delegate void SetBigTileToScreenFunc(int[] screenData, int index, int value);
 
-    public delegate byte[] LoadSegaBackFunc();
-    public delegate void SaveSegaBackFunc(byte[] data);
-
     public delegate void DrawObjectFunc(Graphics g, ObjectRec curObject, int listNo, bool selected, float curScale, ImageList objectSprites, bool inactive, int leftMargin, int topMargin);
     public delegate void DrawObjectBigFunc(Graphics g, ObjectRec curObject, int listNo, bool selected, float curScale, Image[] objectSprites, bool inactive, int leftMargin, int topMargin);
     public delegate bool SelectObjectBigFunc(ObjectRec objRec, Image[] objectSprites, int x, int y);
@@ -68,8 +62,6 @@ namespace CadEditor
             //add pathes for including scripts
             var globalSettings = CSScript.GlobalSettings;
             globalSettings.AddSearchDir("./settings_nes");
-            globalSettings.AddSearchDir("./settings_smd");
-            globalSettings.AddSearchDir("./settings_gba");
         }
         public static void LoadGlobalsFromFile(string fileName)
         {
@@ -197,8 +189,6 @@ namespace CadEditor
             screenDataStride = callFromScript(asm, data, "*.getScreenDataStride", 1);
             wordLen = callFromScript(asm, data, "*.getWordLen", 1);
             littleEndian = callFromScript(asm, data, "*.isLittleEndian", false);
-            useSegaGraphics = callFromScript(asm, data, "*.isUseSegaGraphics", false);
-            useGbGraphics = callFromScript(asm, data, "*.isUseGbGraphics", false);
             blockSize4x4 = callFromScript(asm, data, "*.isBlockSize4x4", false);
             buildScreenFromSmallBlocks = callFromScript(asm, data, "isBuildScreenFromSmallBlocks", false);
             getLevelRecsFunc = callFromScript<GetLevelRecsFunc>(asm, data, "*.getLevelRecsFunc", ConfigScript.getLevelRecsFuncDefault());
@@ -246,8 +236,6 @@ namespace CadEditor
                 getBigBlocksAddrFuncs[0] = callFromScript<GetBigBlocksAddrFunc>(asm, data, "*.getBigBlocksAddrFunc", getBigBlocksAddrFuncs[0]);
             }
 
-            getSegaMappingFunc = callFromScript<GetSegaMappingFunc>(asm, data, "*.getSegaMappingFunc", (int index) => Utils.readLinearBigBlockData(0, index));
-            setSegaMappingFunc = callFromScript<SetSegaMappingFunc>(asm, data, "*.setSegaMappingFunc", (int index, byte[] bb) => { Utils.writeLinearBigBlockData(0, index, bb); });
             getBlocksFunc = callFromScript<GetBlocksFunc>(asm,data,"*.getBlocksFunc");
             setBlocksFunc = callFromScript<SetBlocksFunc>(asm, data, "*.setBlocksFunc");
             getBlocksAddrFunc = callFromScript<GetBlocksAddrFunc> (asm, data, "*.getBlocksAddrFunc");
@@ -263,10 +251,6 @@ namespace CadEditor
             getBigTileNoFromScreenFunc = callFromScript<GetBigTileNoFromScreenFunc>(asm, data, "*.getBigTileNoFromScreenFunc", Utils.getBigTileNoFromScreen);
             setBigTileToScreenFunc = callFromScript<SetBigTileToScreenFunc>(asm, data, "*.setBigTileToScreenFunc", Utils.setBigTileToScreen);
             getObjectDictionaryFunc = callFromScript<GetObjectDictionaryFunc>(asm, data, "*.getObjectDictionaryFunc");
-            loadSegaBackFunc = callFromScript<LoadSegaBackFunc>(asm, data, "*.loadSegaBackFunc");
-            saveSegaBackFunc = callFromScript<SaveSegaBackFunc>(asm, data, "*.saveSegaBackFunc");
-            segaBackWidth  = callFromScript(asm, data, "*.getSegaBackWidth", 64);
-            segaBackHeight = callFromScript(asm, data, "*.getSegaBackHeight", 32);
 
             drawObjectFunc = callFromScript<DrawObjectFunc>(asm, data, "*.getDrawObjectFunc");
             drawObjectBigFunc = callFromScript<DrawObjectBigFunc>(asm, data, "*.getDrawObjectBigFunc");
@@ -336,8 +320,6 @@ namespace CadEditor
         {
             plugins.Clear();
             videoNes = null;
-            videoSega = null;
-            videoGb = null;
         }
 
         private static void loadGlobalPlugins()
@@ -349,8 +331,6 @@ namespace CadEditor
             //auto load video plugins
 
             loadPluginWithSilentCatch(() => videoNes = PluginLoader.loadPlugin<IVideoPluginNes>("PluginVideoNes.dll"));
-            loadPluginWithSilentCatch(() => videoSega = PluginLoader.loadPlugin<IVideoPluginSega>("PluginVideoSega.dll"));
-            loadPluginWithSilentCatch(() => videoGb = PluginLoader.loadPlugin<IVideoPluginGb>("PluginVideoGb.dll"));
         }
 
         private static void loadPluginsFromCurrentConfig(AsmHelper asm, object data)
@@ -401,16 +381,6 @@ namespace CadEditor
         public static void setBigBlocksHierarchy(int hierarchyLevel, int bigTileIndex, BigBlock[] bigBlockIndexes)
         {
             setBigBlocksFuncs[hierarchyLevel](bigTileIndex, bigBlockIndexes);
-        }
-
-        public static byte[] getSegaMapping(int mappingIndex)
-        {
-            return (getSegaMappingFunc ?? (_ => null))(mappingIndex);
-        }
-
-        public static void setSegaMapping(int mappingIndex, byte[] mapping)
-        {
-            setSegaMappingFunc(mappingIndex, mapping);
         }
 
         public static ObjRec[] getBlocks(int bigBlockId)
@@ -467,25 +437,6 @@ namespace CadEditor
          public static void setBigTileToScreen(int[] screenData, int index, int value)
          {
              setBigTileToScreenFunc(screenData, index, value);
-         }
-
-         public static byte[] loadSegaBack()
-         {
-             return loadSegaBackFunc();
-         }
-         public static void saveSegaBack(byte[] data)
-         {
-             saveSegaBackFunc(data);
-         }
-
-         public static int getSegaBackWidth()
-         {
-             return segaBackWidth;
-         }
-
-         public static int getSegaBackHeight()
-         {
-             return segaBackHeight;
          }
 
         public static void drawObject(Graphics g, ObjectRec curObject, int listNo, bool selected, float curScale, ImageList objectSprites, bool inactive, int leftMargin, int topMargin)
@@ -638,16 +589,6 @@ namespace CadEditor
             return scrollsOffsetFromLayout;
         }
 
-        public static bool isUseSegaGraphics()
-        {
-            return useSegaGraphics;
-        }
-
-        public static bool isUseGbGraphics()
-        {
-            return useGbGraphics;
-        }
-
         public static bool isBlockSize4x4()
         {
             return blockSize4x4;
@@ -771,7 +712,6 @@ namespace CadEditor
         public static bool littleEndian;
         public static bool buildScreenFromSmallBlocks;
 
-        public static bool useSegaGraphics;
         public static bool useGbGraphics;
         public static bool blockSize4x4;
 
@@ -781,9 +721,6 @@ namespace CadEditor
         public static int maxObjCoordX;
         public static int maxObjCoordY;
         public static int maxObjType;
-
-        public static int segaBackWidth;
-        public static int segaBackHeight;
 
         //public static IList<LevelRec> levelRecs;
         public static GetLevelRecsFunc getLevelRecsFunc;
@@ -798,9 +735,6 @@ namespace CadEditor
         public static SetBigBlocksFunc[] setBigBlocksFuncs;
         public static GetBigBlocksAddrFunc[] getBigBlocksAddrFuncs;
         public static GetBigBlocksCountFunc getBigBlocksCountFunc;
-
-        public static GetSegaMappingFunc getSegaMappingFunc;
-        public static SetSegaMappingFunc setSegaMappingFunc;
 
         public static int blocksCount;
         public static GetBlocksFunc getBlocksFunc;
@@ -825,9 +759,6 @@ namespace CadEditor
 
         public static GetBigTileNoFromScreenFunc getBigTileNoFromScreenFunc;
         public static SetBigTileToScreenFunc setBigTileToScreenFunc;
-
-        public static LoadSegaBackFunc loadSegaBackFunc;
-        public static SaveSegaBackFunc saveSegaBackFunc;
 
         public static DrawObjectFunc drawObjectFunc;
         public static DrawObjectBigFunc drawObjectBigFunc;
@@ -872,7 +803,5 @@ namespace CadEditor
 
         public static List<IPlugin> plugins = new List<IPlugin>();
         public static IVideoPluginNes videoNes;
-        public static IVideoPluginSega videoSega;
-        public static IVideoPluginGb videoGb;
     }
 }
