@@ -15,7 +15,6 @@ namespace CadEditor
         public static string Refresh;
         public static string BigBlocksEditor;
         public static string BlocksEditor;
-        public static string StructuresEditor;
         public static string ConfigEditor;
         public static string ShowNeighborns;
         public static string ShowAxis;
@@ -38,7 +37,6 @@ namespace CadEditor
         public static string Pallete;
         public static string OrGroup1;
         public static string OrGroup2;
-        public static string UseStructs;
         public static string Coords;*/
     }
 }
