@@ -1,7 +1,11 @@
-/CadEditor/*.nes
+*.dll
+*.exe
+*.nes
+*.cache
+/.vs
 /CadEditor/.vs
 /CadEditor/bin
-/CadeEditor/obj
+/CadEditor/obj
 /PluginHexEditor/.vs
 /PluginHexEditor/bin
 /PluginHexEditor/obj
@@ -17,6 +21,8 @@
 /PluginExportScreens/.vs
 /PluginExportScreens/bin
 /PluginExportScreens/obj
+/PluginCompressLZKN/bin
+/PluginCompressLZKN/obj
 /PluginChrView/.vs
 /PluginChrView/bin
 /PluginChrView/obj
@@ -29,7 +35,13 @@
 /SettingsVerifier/.vs
 /SettingsVerifier/bin
 /SettingsVerifier/obj
+/SettingsViewer/obj
 /CadEditor/*.pdb
 /CadEditor/*.deb
-/SettingsVerifier/obj/Debug
-/SettingsViewer/obj/Debug
+
+# stray files from build
+CadEditor/CadEditor.exe.config
+CadEditor/ConfigViewer.exe.config
+CadEditor/CSScriptLibrary.xml
+CadEditor/Newtonsoft.Json.xml
+CadEditor/SettingsVerifier.exe.config
