@@ -1,1 +1,0 @@
-Offset: 8960-8ac7 (using RLE)

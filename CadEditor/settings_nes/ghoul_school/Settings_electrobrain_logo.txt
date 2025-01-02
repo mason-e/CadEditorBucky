@@ -1,2 +1,0 @@
-Offset: 190e9-194a8
-Palette: 194a9-194e8
