@@ -1,2 +1,0 @@
-python makeScreens.py
-pause

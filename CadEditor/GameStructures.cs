@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Globalization;
 using System.Linq;
-using Newtonsoft.Json;
 
 using System.Drawing;
+using System.Text.Json.Serialization;
 
 namespace CadEditor
 {

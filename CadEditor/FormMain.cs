@@ -52,9 +52,7 @@ namespace CadEditor
             }
 
             subeditorsDict = new Dictionary<ToolStripButton, Func<Form>> { 
-                 { bttBigBlocks,    ()=>{ var f = new BigBlockEdit();  f.setFormMain(this); return f;} },
                  { bttBlocks,       makeBlocksEditor },
-                 { bttEnemies,      ()=>{ var f = new EnemyEditor();  f.setFormMain(this); return f;}  },
             };
         }
 
@@ -108,15 +106,12 @@ namespace CadEditor
             showNeiScreens = true;
             showAxis = true;
             showBrush = true;
-            useStructs = false;
             curActiveLayer = 0;
 
             reloadGameType();
             changeLevelIndex(true);
 
-            bttBigBlocks.Enabled = ConfigScript.isBigBlockEditorEnabled;
             bttBlocks.Enabled = ConfigScript.isBlockEditorEnabled;
-            bttEnemies.Enabled = ConfigScript.isEnemyEditorEnabled;
 
             bool isTwoLayers = getLayersCount() > 1;
             bool isPhysicsLayer = ConfigScript.loadPhysicsLayerFunc != null;
@@ -226,31 +221,6 @@ namespace CadEditor
             }
         }
 
-        private void drawActiveTileStruct(Graphics g, Rectangle visibleRect)
-        {
-            int tileSizeX = (int)(bigBlocks[0].Width * curScale);
-            int tileSizeY = (int)(bigBlocks[0].Height * curScale);
-            if (curTileStruct != null)
-            {
-                int width1 = curTileStruct.width;
-                int height1 = curTileStruct.height;
-                for (int x = 0; x < width1; x++)
-                {
-                    for (int y = 0; y < height1; y++)
-                    {
-                        int index = curTileStruct[x, y];
-                        var tileRect = new Rectangle((curDx + 1) * tileSizeX + x * tileSizeX, curDy * tileSizeY + y * tileSizeY, tileSizeX, tileSizeY);
-
-                        if ((visibleRect.Contains(tileRect)) || (visibleRect.IntersectsWith(tileRect)))
-                        {
-                            if ((index!=-1) && (index < bigBlocks.Length))
-                                g.DrawImage(bigBlocks[index], tileRect);
-                        }
-                    }
-                }
-            }
-        }
-
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             if (!fileLoaded)
@@ -296,17 +266,10 @@ namespace CadEditor
             {
                 if (showBrush && curActiveBlock != -1 && (curDx != Outside || curDy != Outside) && !altPressed)
                 {
-                    if (!useStructs)
-                    {
-                        var tx = (curDx + 1) * tileSizeX;
-                        var ty = curDy * tileSizeY;
-                        var tileRect = new Rectangle(tx, ty, tileSizeX, tileSizeY);
-                        g.DrawImage(bigBlocks[curActiveBlock], tileRect);
-                    }
-                    else
-                    {
-                        drawActiveTileStruct(g, visibleRect);
-                    }
+                    var tx = (curDx + 1) * tileSizeX;
+                    var ty = curDy * tileSizeY;
+                    var tileRect = new Rectangle(tx, ty, tileSizeX, tileSizeY);
+                    g.DrawImage(bigBlocks[curActiveBlock], tileRect);
                 }
             }
 
@@ -324,10 +287,6 @@ namespace CadEditor
         private int curActiveBlock;
 
         //generic
-
-        bool useStructs;
-        TileStructure curTileStruct;
-
         private bool dirty;
         private bool showNeiScreens;
         private bool showBrush;
@@ -429,53 +388,16 @@ namespace CadEditor
                 }
                 else
                 {
-                    if (!useStructs)
+                    int index = dy * width + dx;
+                    var layer = getActiveLayer(screens[screenNo]);
+                    if (index < layer.data.Length)
                     {
-                        int index = dy * width + dx;
-                        var layer = getActiveLayer(screens[screenNo]);
-                        if (index < layer.data.Length)
-                        {
-                            ConfigScript.setBigTileToScreen(layer.data, index, curActiveBlock);
-                        }
-                        dirty = true; updateSaveVisibility();
+                        ConfigScript.setBigTileToScreen(layer.data, index, curActiveBlock);
                     }
-                    else
-                    {
-                        if (!isPhysicsLayerSelected()) //disable structs for physics layer
-                        {
-                            appendCurTileStruct(dx, dy);
-                            dirty = true;
-                            updateSaveVisibility();
-                        }
-                    }
+                    dirty = true; updateSaveVisibility();
                 }
             }
             mapScreen.Invalidate();
-        }
-
-        private void appendCurTileStruct(int dx, int dy)
-        {
-            var screen = getActiveScreen();
-            int width = screen.width;
-            int height = screen.height;
-            if (curTileStruct!=null)
-            {
-                int width1 = curTileStruct.width;
-                int height1 = curTileStruct.height;
-                for (int x = 0; x < width1; x++)
-                {
-                    for (int y = 0; y < height1; y++)
-                    {
-                        if ((dy + y) >= height || (dx + x) >= width)
-                            continue;
-                        int index = (dy+y) * width + (dx+x);
-                        int no = curTileStruct[x, y];
-                        if (no == -1)
-                            continue;
-                        ConfigScript.setBigTileToScreen(screen.layers[curActiveLayer].data, index, no);
-                    }
-                }
-            }
         }
 
         private void mapScreen_MouseLeave(object sender, EventArgs e)
@@ -762,10 +684,6 @@ namespace CadEditor
                         tiles[j][i] = curScreen.layers[curActiveLayer].data[index];
                     }
                 }
-                FormStructures.addTileStruct(tiles);
-                cbUseStructs.Checked = true;
-                if (useStructs)
-                    updateBlocksPanelVisible();
             }
             selectionRect = false;
             curClicked = false;
@@ -818,42 +736,6 @@ namespace CadEditor
             (bttLayer.DropDownItems[0] as ToolStripMenuItem).Checked = curActiveLayer == 0;
             (bttLayer.DropDownItems[1] as ToolStripMenuItem).Checked = curActiveLayer == 1;
             (bttLayer.DropDownItems[2] as ToolStripMenuItem).Checked = isPhysicsLayerSelected();
-        }
-
-        private void bttStructures_Click(object sender, EventArgs e)
-        {
-            var f = new FormStructures();
-            f.setFormMain(this);
-            f.Show();
-            updateBlocksPanelVisible();
-        }
-
-        private void updateBlocksPanelVisible()
-        {
-            pnBlocks.Visible = !useStructs;
-            lbStructures.Visible = useStructs;
-            if (useStructs)
-            {
-                lbStructures.Items.Clear();
-                var tss = FormStructures.getTileStructures();
-                foreach (var ts in tss)
-                    lbStructures.Items.Add(ts.name);
-            }
-        }
-
-        private void cbUseStructs_CheckedChanged(object sender, EventArgs e)
-        {
-            useStructs = cbUseStructs.Checked;
-            updateBlocksPanelVisible();
-        }
-
-        private void lbStructures_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int index = lbStructures.SelectedIndex;
-            var tss = FormStructures.getTileStructures();
-            if (index == -1 || index >= tss.Count)
-                return;
-            curTileStruct = tss[index];
         }
 
         public void reloadCallback()
@@ -946,13 +828,6 @@ namespace CadEditor
             OnResize(e);
         }
 
-        private void bttRunScript_Click(object sender, EventArgs e)
-        {
-            var f = new FormScript();
-            f.setFormMain(this);
-            f.Show();
-        }
-
         private void splitContainer1_Panel1_Resize(object sender, EventArgs e)
         {
             pnBlocks.Width = splitContainer1.Panel1.Width - pnElements.Width - 10;
@@ -972,13 +847,9 @@ namespace CadEditor
                 //place for plugin
                 sToolButtons,
 
-                bttBigBlocks,
                 bttBlocks,
-                bttEnemies,
                 toolStripSeparator2,
 
-                bttStructures,
-                bttRunScript,
                 toolStripSeparator3,
 
                 bttShowNei,
@@ -1003,7 +874,7 @@ namespace CadEditor
 
         public void addSubeditorButton(ToolStripItem item)
         {
-          toolStrip1.Items.Insert(toolStrip1.Items.IndexOf(bttEnemies)+1, item);
+          toolStrip1.Items.Insert(toolStrip1.Items.IndexOf(bttBlocks)+1, item);
         }
 
         private void bttScale_ButtonClick(object sender, EventArgs e)

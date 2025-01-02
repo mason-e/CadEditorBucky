@@ -8,9 +8,7 @@ public class Data
   
   public bool isBuildScreenFromSmallBlocks() { return true; }
   
-  public bool isBigBlockEditorEnabled() { return false; }
   public bool isBlockEditorEnabled()    { return true; }
-  public bool isEnemyEditorEnabled()    { return false; }
   
   public OffsetRec getVideoOffset()     { return new OffsetRec(0x0 , 3   , 0x1000);  }
   public OffsetRec getPalOffset  ()     { return new OffsetRec(0x0 , 3   , 16); }

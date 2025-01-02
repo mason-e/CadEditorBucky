@@ -258,9 +258,7 @@ namespace CadEditor
 
             renderToMainScreenFunc = callFromScript<RenderToMainScreenFunc>(asm, data, "*.getRenderToMainScreenFunc");
 
-            isBigBlockEditorEnabled = callFromScript(asm, data, "*.isBigBlockEditorEnabled", true);
             isBlockEditorEnabled = callFromScript(asm, data, "*.isBlockEditorEnabled", true);
-            isEnemyEditorEnabled = callFromScript(asm, data, "*.isEnemyEditorEnabled", true);
             objTypesPicturesDir = callFromScript(asm, data, "*.getObjTypesPicturesDir", "obj_sprites");
 
             showScrollsInLayout = callFromScript(asm, data, "*.isShowScrollsInLayout", true);
@@ -324,12 +322,7 @@ namespace CadEditor
 
         private static void loadGlobalPlugins()
         {
-            //auto load plugins
-            loadPluginWithSilentCatch(() => addPlugin("PluginExportScreens.dll"));
-            loadPluginWithSilentCatch(() => addPlugin("PluginHexEditor.dll"));
-
             //auto load video plugins
-
             loadPluginWithSilentCatch(() => videoNes = PluginLoader.loadPlugin<IVideoPluginNes>("PluginVideoNes.dll"));
         }
 
@@ -773,9 +766,7 @@ namespace CadEditor
 
         public static float defaultScale;
 
-        public static bool isBigBlockEditorEnabled;
         public static bool isBlockEditorEnabled;
-        public static bool isEnemyEditorEnabled;
 
         public static bool showScrollsInLayout;
         public static int scrollsOffsetFromLayout;

@@ -1,2 +1,0 @@
-python genCorruptRoms.py
-pause

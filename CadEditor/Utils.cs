@@ -768,36 +768,6 @@ namespace CadEditor
             return videoChunk;
         }
 
-        public static void loadEnemyPictures(ref ImageList objectSprites, out Image[] objectSpritesBig)
-        {
-            const int objectsCount = 256; //limit for now
-            var objSpritesDir = ConfigScript.getObjTypesPicturesDir();
-            var objSpritesDirGeneric = "obj_sprites";
-            var templ = objSpritesDir + "/{0:000}.png";
-            var templBig = objSpritesDir + "/{0:000}b.png";
-            objectSprites.Images.Clear();
-            objectSprites.Images.AddStrip(Image.FromFile(objSpritesDirGeneric + "/objSprites.png"));
-            objectSpritesBig = new Image[256];
-            for (int i = 0; i < objectsCount; i++)
-            {
-                var fname = String.Format(templ, i);
-                if (File.Exists(fname))
-                {
-                    objectSprites.Images[i] = Image.FromFile(fname);
-                }
-
-                var fnameBig = String.Format(templBig, i);
-                if (File.Exists(fnameBig))
-                {
-                    objectSpritesBig[i] = Image.FromFile(fnameBig);
-                }
-                else
-                {
-                    objectSpritesBig[i] = objectSprites.Images[i];
-                }
-            }
-        }
-
         public static  void defaultDrawObject(Graphics g, ObjectRec curObject, int listNo, bool isSelected, float curScale, ImageList objectSprites, bool inactive, int leftMargin, int topMargin)
         {
             int x = curObject.x, y = curObject.y;

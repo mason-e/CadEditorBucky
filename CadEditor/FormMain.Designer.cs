@@ -58,12 +58,8 @@
             this.bttReload = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bttBigBlocks = new System.Windows.Forms.ToolStripButton();
             this.bttBlocks = new System.Windows.Forms.ToolStripButton();
-            this.bttEnemies = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.bttStructures = new System.Windows.Forms.ToolStripButton();
-            this.bttRunScript = new System.Windows.Forms.ToolStripButton();
             this.bttShowNei = new System.Windows.Forms.ToolStripButton();
             this.bttAxis = new System.Windows.Forms.ToolStripButton();
             this.bttShowBrush = new System.Windows.Forms.ToolStripButton();
@@ -90,8 +86,6 @@
             this.pnBlocks = new System.Windows.Forms.Panel();
             this.blocksScreen = new System.Windows.Forms.PictureBox();
             this.pnElements = new System.Windows.Forms.Panel();
-            this.cbUseStructs = new System.Windows.Forms.CheckBox();
-            this.lbStructures = new System.Windows.Forms.ListBox();
             this.pnViewScroll = new System.Windows.Forms.Panel();
             this.lbPalBytesAddr = new System.Windows.Forms.Label();
             this.sToolButtons = new System.Windows.Forms.ToolStripSeparator();
@@ -422,12 +416,8 @@
             this.bttReload,
             this.toolStripSeparator1,
             this.sToolButtons,
-            this.bttBigBlocks,
             this.bttBlocks,
-            this.bttEnemies,
             this.toolStripSeparator2,
-            this.bttStructures,
-            this.bttRunScript,
             this.toolStripSeparator3,
             this.bttShowNei,
             this.bttAxis,
@@ -488,16 +478,6 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
-            // bttBigBlocks
-            // 
-            this.bttBigBlocks.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bttBigBlocks.Image = ((System.Drawing.Image)(resources.GetObject("bttBigBlocks.Image")));
-            this.bttBigBlocks.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bttBigBlocks.Name = "bttBigBlocks";
-            this.bttBigBlocks.Size = new System.Drawing.Size(24, 24);
-            this.bttBigBlocks.Text = "Edit BigBlocks";
-            this.bttBigBlocks.Click += new System.EventHandler(this.btSubeditor_Click);
-            // 
             // bttBlocks
             // 
             this.bttBlocks.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -508,40 +488,10 @@
             this.bttBlocks.Text = "Edit Blocks";
             this.bttBlocks.Click += new System.EventHandler(this.btSubeditor_Click);
             // 
-            // bttEnemies
-            // 
-            this.bttEnemies.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bttEnemies.Image = ((System.Drawing.Image)(resources.GetObject("bttEnemies.Image")));
-            this.bttEnemies.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bttEnemies.Name = "bttEnemies";
-            this.bttEnemies.Size = new System.Drawing.Size(24, 24);
-            this.bttEnemies.Text = "Edit Enemies";
-            this.bttEnemies.Click += new System.EventHandler(this.btSubeditor_Click);
-            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bttStructures
-            // 
-            this.bttStructures.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bttStructures.Image = ((System.Drawing.Image)(resources.GetObject("bttStructures.Image")));
-            this.bttStructures.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bttStructures.Name = "bttStructures";
-            this.bttStructures.Size = new System.Drawing.Size(24, 24);
-            this.bttStructures.Text = "Make structures";
-            this.bttStructures.Click += new System.EventHandler(this.bttStructures_Click);
-            // 
-            // bttRunScript
-            // 
-            this.bttRunScript.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bttRunScript.Image = ((System.Drawing.Image)(resources.GetObject("bttRunScript.Image")));
-            this.bttRunScript.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bttRunScript.Name = "bttRunScript";
-            this.bttRunScript.Size = new System.Drawing.Size(24, 24);
-            this.bttRunScript.Text = "Run script";
-            this.bttRunScript.Click += new System.EventHandler(this.bttRunScript_Click);
             // 
             // bttShowNei
             // 
@@ -763,7 +713,6 @@
             // 
             this.splitContainer1.Panel1.Controls.Add(this.pnBlocks);
             this.splitContainer1.Panel1.Controls.Add(this.pnElements);
-            this.splitContainer1.Panel1.Controls.Add(this.lbStructures);
             this.splitContainer1.Panel1.Resize += new System.EventHandler(this.splitContainer1_Panel1_Resize);
             // 
             // splitContainer1.Panel2
@@ -800,7 +749,6 @@
             // 
             // pnElements
             // 
-            this.pnElements.Controls.Add(this.cbUseStructs);
             this.pnElements.Controls.Add(this.lbCoords);
             this.pnElements.Controls.Add(this.lbActiveBlock);
             this.pnElements.Controls.Add(this.label4);
@@ -815,33 +763,6 @@
             this.pnElements.Name = "pnElements";
             this.pnElements.Size = new System.Drawing.Size(103, 638);
             this.pnElements.TabIndex = 5;
-            // 
-            // cbUseStructs
-            // 
-            this.cbUseStructs.AutoSize = true;
-            this.cbUseStructs.Location = new System.Drawing.Point(4, 564);
-            this.cbUseStructs.Margin = new System.Windows.Forms.Padding(4);
-            this.cbUseStructs.Name = "cbUseStructs";
-            this.cbUseStructs.Size = new System.Drawing.Size(101, 21);
-            this.cbUseStructs.TabIndex = 57;
-            this.cbUseStructs.Text = "Use structs";
-            this.cbUseStructs.UseVisualStyleBackColor = true;
-            this.cbUseStructs.CheckedChanged += new System.EventHandler(this.cbUseStructs_CheckedChanged);
-            // 
-            // lbStructures
-            // 
-            this.lbStructures.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbStructures.FormattingEnabled = true;
-            this.lbStructures.ItemHeight = 16;
-            this.lbStructures.Location = new System.Drawing.Point(4, 5);
-            this.lbStructures.Margin = new System.Windows.Forms.Padding(4);
-            this.lbStructures.Name = "lbStructures";
-            this.lbStructures.Size = new System.Drawing.Size(261, 628);
-            this.lbStructures.TabIndex = 6;
-            this.lbStructures.Visible = false;
-            this.lbStructures.SelectedIndexChanged += new System.EventHandler(this.lbStructures_SelectedIndexChanged);
             // 
             // pnViewScroll
             // 
@@ -938,9 +859,7 @@
         private System.Windows.Forms.ToolStripButton bttSave;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton bttBigBlocks;
         private System.Windows.Forms.ToolStripButton bttBlocks;
-        private System.Windows.Forms.ToolStripButton bttEnemies;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel pnElements;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
@@ -960,9 +879,6 @@
         private System.Windows.Forms.ToolStripDropDownButton bttLayer;
         private System.Windows.Forms.ToolStripMenuItem tsLayer1;
         private System.Windows.Forms.ToolStripMenuItem tsLayer2;
-        private System.Windows.Forms.ToolStripButton bttStructures;
-        private System.Windows.Forms.CheckBox cbUseStructs;
-        private System.Windows.Forms.ListBox lbStructures;
         private System.Windows.Forms.ToolStripButton bttReload;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton tbbShowPluginInfo;
@@ -976,7 +892,6 @@
         private System.Windows.Forms.Panel pnBlocks;
         private System.Windows.Forms.PictureBox blocksScreen;
         private System.Windows.Forms.Panel pnViewScroll;
-        private System.Windows.Forms.ToolStripButton bttRunScript;
         private System.Windows.Forms.ToolStripButton bttAdditionalRender;
         private System.Windows.Forms.ToolStripButton bttPhysicsLayerRender;
         private System.Windows.Forms.ToolStripMenuItem tsLayerPhysics;
