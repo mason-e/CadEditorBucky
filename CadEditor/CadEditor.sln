@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadEditor", "CadEditor.csproj", "{BD2A990C-9D64-472D-9C78-1429C666604B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginAnimEditor", "..\CadEnemyEditor\PluginAnimEditor.csproj", "{56D14DAD-7662-42D2-BEA1-B6E427807D30}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingsVerifier", "..\SettingsVerifier\SettingsVerifier.csproj", "{3FD2E457-380B-4AF3-B8B5-A11D6FA228DA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginHexEditor", "..\PluginHexEditor\PluginHexEditor.csproj", "{56C8768C-CBE8-492C-A58C-9A2766B1DD68}"

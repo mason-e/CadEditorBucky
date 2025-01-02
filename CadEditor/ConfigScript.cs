@@ -260,7 +260,6 @@ namespace CadEditor
 
             isBigBlockEditorEnabled = callFromScript(asm, data, "*.isBigBlockEditorEnabled", true);
             isBlockEditorEnabled = callFromScript(asm, data, "*.isBlockEditorEnabled", true);
-            isEnemyEditorEnabled = callFromScript(asm, data, "*.isEnemyEditorEnabled", true);
             objTypesPicturesDir = callFromScript(asm, data, "*.getObjTypesPicturesDir", "obj_sprites");
 
             showScrollsInLayout = callFromScript(asm, data, "*.isShowScrollsInLayout", true);
@@ -775,7 +774,6 @@ namespace CadEditor
 
         public static bool isBigBlockEditorEnabled;
         public static bool isBlockEditorEnabled;
-        public static bool isEnemyEditorEnabled;
 
         public static bool showScrollsInLayout;
         public static int scrollsOffsetFromLayout;

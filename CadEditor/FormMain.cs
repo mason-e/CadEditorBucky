@@ -54,7 +54,6 @@ namespace CadEditor
             subeditorsDict = new Dictionary<ToolStripButton, Func<Form>> { 
                  { bttBigBlocks,    ()=>{ var f = new BigBlockEdit();  f.setFormMain(this); return f;} },
                  { bttBlocks,       makeBlocksEditor },
-                 { bttEnemies,      ()=>{ var f = new EnemyEditor();  f.setFormMain(this); return f;}  },
             };
         }
 
@@ -116,7 +115,6 @@ namespace CadEditor
 
             bttBigBlocks.Enabled = ConfigScript.isBigBlockEditorEnabled;
             bttBlocks.Enabled = ConfigScript.isBlockEditorEnabled;
-            bttEnemies.Enabled = ConfigScript.isEnemyEditorEnabled;
 
             bool isTwoLayers = getLayersCount() > 1;
             bool isPhysicsLayer = ConfigScript.loadPhysicsLayerFunc != null;
@@ -974,7 +972,6 @@ namespace CadEditor
 
                 bttBigBlocks,
                 bttBlocks,
-                bttEnemies,
                 toolStripSeparator2,
 
                 bttStructures,
@@ -1003,7 +1000,7 @@ namespace CadEditor
 
         public void addSubeditorButton(ToolStripItem item)
         {
-          toolStrip1.Items.Insert(toolStrip1.Items.IndexOf(bttEnemies)+1, item);
+          toolStrip1.Items.Insert(toolStrip1.Items.IndexOf(bttBlocks)+1, item);
         }
 
         private void bttScale_ButtonClick(object sender, EventArgs e)

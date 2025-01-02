@@ -10,7 +10,6 @@ public class Data
   
   public bool isBigBlockEditorEnabled() { return false; }
   public bool isBlockEditorEnabled()    { return true; }
-  public bool isEnemyEditorEnabled()    { return false; }
   
   public OffsetRec getVideoOffset()     { return new OffsetRec(0x0 , 2   , 0x1000);  }
   public OffsetRec getPalOffset  ()     { return new OffsetRec(0x0 , 2   , 16); }

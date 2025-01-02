@@ -60,7 +60,6 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bttBigBlocks = new System.Windows.Forms.ToolStripButton();
             this.bttBlocks = new System.Windows.Forms.ToolStripButton();
-            this.bttEnemies = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.bttStructures = new System.Windows.Forms.ToolStripButton();
             this.bttRunScript = new System.Windows.Forms.ToolStripButton();
@@ -424,7 +423,6 @@
             this.sToolButtons,
             this.bttBigBlocks,
             this.bttBlocks,
-            this.bttEnemies,
             this.toolStripSeparator2,
             this.bttStructures,
             this.bttRunScript,
@@ -507,16 +505,6 @@
             this.bttBlocks.Size = new System.Drawing.Size(24, 24);
             this.bttBlocks.Text = "Edit Blocks";
             this.bttBlocks.Click += new System.EventHandler(this.btSubeditor_Click);
-            // 
-            // bttEnemies
-            // 
-            this.bttEnemies.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bttEnemies.Image = ((System.Drawing.Image)(resources.GetObject("bttEnemies.Image")));
-            this.bttEnemies.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bttEnemies.Name = "bttEnemies";
-            this.bttEnemies.Size = new System.Drawing.Size(24, 24);
-            this.bttEnemies.Text = "Edit Enemies";
-            this.bttEnemies.Click += new System.EventHandler(this.btSubeditor_Click);
             // 
             // toolStripSeparator3
             // 
@@ -940,7 +928,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton bttBigBlocks;
         private System.Windows.Forms.ToolStripButton bttBlocks;
-        private System.Windows.Forms.ToolStripButton bttEnemies;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel pnElements;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;

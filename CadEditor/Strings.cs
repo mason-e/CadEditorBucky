@@ -15,7 +15,6 @@ namespace CadEditor
         public static string Refresh;
         public static string BigBlocksEditor;
         public static string BlocksEditor;
-        public static string EnemyEditor;
         public static string StructuresEditor;
         public static string ConfigEditor;
         public static string ShowNeighborns;
