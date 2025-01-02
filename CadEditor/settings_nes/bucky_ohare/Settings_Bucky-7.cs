@@ -8,7 +8,6 @@ public class Data
   
   public bool isBuildScreenFromSmallBlocks() { return true; }
   
-  public bool isBigBlockEditorEnabled() { return false; }
   public bool isBlockEditorEnabled()    { return true; }
   
   public OffsetRec getVideoOffset()     { return new OffsetRec(0x0 , 5   , 0x1000);  }

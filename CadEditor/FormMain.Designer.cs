@@ -58,7 +58,6 @@
             this.bttReload = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bttBigBlocks = new System.Windows.Forms.ToolStripButton();
             this.bttBlocks = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.bttShowNei = new System.Windows.Forms.ToolStripButton();
@@ -417,7 +416,6 @@
             this.bttReload,
             this.toolStripSeparator1,
             this.sToolButtons,
-            this.bttBigBlocks,
             this.bttBlocks,
             this.toolStripSeparator2,
             this.toolStripSeparator3,
@@ -479,16 +477,6 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bttBigBlocks
-            // 
-            this.bttBigBlocks.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bttBigBlocks.Image = ((System.Drawing.Image)(resources.GetObject("bttBigBlocks.Image")));
-            this.bttBigBlocks.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bttBigBlocks.Name = "bttBigBlocks";
-            this.bttBigBlocks.Size = new System.Drawing.Size(24, 24);
-            this.bttBigBlocks.Text = "Edit BigBlocks";
-            this.bttBigBlocks.Click += new System.EventHandler(this.btSubeditor_Click);
             // 
             // bttBlocks
             // 
@@ -871,7 +859,6 @@
         private System.Windows.Forms.ToolStripButton bttSave;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton bttBigBlocks;
         private System.Windows.Forms.ToolStripButton bttBlocks;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel pnElements;

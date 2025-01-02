@@ -258,7 +258,6 @@ namespace CadEditor
 
             renderToMainScreenFunc = callFromScript<RenderToMainScreenFunc>(asm, data, "*.getRenderToMainScreenFunc");
 
-            isBigBlockEditorEnabled = callFromScript(asm, data, "*.isBigBlockEditorEnabled", true);
             isBlockEditorEnabled = callFromScript(asm, data, "*.isBlockEditorEnabled", true);
             objTypesPicturesDir = callFromScript(asm, data, "*.getObjTypesPicturesDir", "obj_sprites");
 
@@ -767,7 +766,6 @@ namespace CadEditor
 
         public static float defaultScale;
 
-        public static bool isBigBlockEditorEnabled;
         public static bool isBlockEditorEnabled;
 
         public static bool showScrollsInLayout;

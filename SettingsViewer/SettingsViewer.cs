@@ -235,8 +235,6 @@ namespace SettingsViewer
         [Category("Render objects params")]
         public MethodDelegate getRenderToMainScreenFunc => get();
         [Category("Editors enable params")]
-        public MethodDelegate isBigBlockEditorEnabled => get();
-        [Category("Editors enable params")]
         public MethodDelegate isBlockEditorEnabled => get();
         [Category("Icons hints")]
         public MethodDelegate getObjTypesPicturesDir => get();

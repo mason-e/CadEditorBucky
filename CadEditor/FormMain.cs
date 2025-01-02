@@ -52,7 +52,6 @@ namespace CadEditor
             }
 
             subeditorsDict = new Dictionary<ToolStripButton, Func<Form>> { 
-                 { bttBigBlocks,    ()=>{ var f = new BigBlockEdit();  f.setFormMain(this); return f;} },
                  { bttBlocks,       makeBlocksEditor },
             };
         }
@@ -112,7 +111,6 @@ namespace CadEditor
             reloadGameType();
             changeLevelIndex(true);
 
-            bttBigBlocks.Enabled = ConfigScript.isBigBlockEditorEnabled;
             bttBlocks.Enabled = ConfigScript.isBlockEditorEnabled;
 
             bool isTwoLayers = getLayersCount() > 1;
@@ -849,7 +847,6 @@ namespace CadEditor
                 //place for plugin
                 sToolButtons,
 
-                bttBigBlocks,
                 bttBlocks,
                 toolStripSeparator2,
 
