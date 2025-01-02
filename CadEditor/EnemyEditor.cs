@@ -65,18 +65,7 @@ namespace CadEditor
         {
             if (!ConfigScript.usePicturesInstedBlocks)
             {
-                if (ConfigScript.isUseSegaGraphics())
-                {
-                    bigBlocks = Globals.makeSegaBigBlocks(curVideoNo, curBigBlockNo, curPaletteNo, MapViewType.Tiles);
-                }
-                else if (ConfigScript.isUseGbGraphics())
-                {
-                    bigBlocks = Globals.makeGbBigBlocks(curVideoNo, curBigBlockNo, curPaletteNo, MapViewType.Tiles);
-                }
-                else
-                {
-                    bigBlocks = ConfigScript.videoNes.makeBigBlocks(curVideoNo, curBigBlockNo, curBlockNo, curPaletteNo, MapViewType.Tiles, MapViewType.Tiles, ConfigScript.getbigBlocksHierarchyCount() - 1);
-                }
+                bigBlocks = ConfigScript.videoNes.makeBigBlocks(curVideoNo, curBigBlockNo, curBlockNo, curPaletteNo, MapViewType.Tiles, MapViewType.Tiles, ConfigScript.getbigBlocksHierarchyCount() - 1);
             }
         }
 

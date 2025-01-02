@@ -1,3 +1,0 @@
-Titlescreen
-Offset: 11485-11844 (tilemap)
-Palette: 1184a-11889

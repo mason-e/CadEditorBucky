@@ -21,10 +21,6 @@ namespace SettingsEditor
             string rootDirName = Path.GetFullPath(".");
             var dirNames = new List<string>();
             dirNames.AddRange(Directory.GetDirectories(rootDirName + "\\settings_nes", "*", SearchOption.AllDirectories));
-            dirNames.AddRange(Directory.GetDirectories(rootDirName + "\\settings_smd", "*", SearchOption.AllDirectories));
-            dirNames.AddRange(Directory.GetDirectories(rootDirName + "\\settings_gb", "*", SearchOption.AllDirectories));
-            dirNames.AddRange(Directory.GetDirectories(rootDirName + "\\settings_gba", "*", SearchOption.AllDirectories));
-
             foreach (var dirName in dirNames)
             {
                 string[] fileNames = Directory.GetFiles(dirName, "Settings_*.cs");

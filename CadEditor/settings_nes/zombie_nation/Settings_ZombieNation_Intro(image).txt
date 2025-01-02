@@ -1,2 +1,0 @@
-Offset: 9410-97cf (tilemap)
-Palette: 97d0-980f

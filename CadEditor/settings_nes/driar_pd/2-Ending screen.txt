@@ -1,2 +1,0 @@
-Offset: 11442-11801 (tilemap)
-Palette: 11802-11841

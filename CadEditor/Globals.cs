@@ -145,31 +145,10 @@ namespace CadEditor
             return new Screen(new BlockLayer(result), w, h);
         }
 
-        public static Image[] makeSegaBigBlocks(int curActiveVideoNo, int curActiveBigBlockNo, int curActivePalleteNo, MapViewType curViewType)
-        {
-            byte[] mapping = ConfigScript.getSegaMapping(curActiveBigBlockNo);
-            byte[] videoTiles = ConfigScript.getVideoChunk(curActiveVideoNo);
-            byte[] pal = ConfigScript.getPal(curActivePalleteNo);
-            int count = ConfigScript.getBigBlocksCount(ConfigScript.getbigBlocksHierarchyCount() - 1, curActiveBigBlockNo);
-            return ConfigScript.videoSega.makeBigBlocks(mapping, videoTiles, pal, count, curViewType);
-        }
-
-        public static Image[] makeGbBigBlocks(int curActiveVideoNo, int curActiveBigBlockNo, int curActivePalleteNo, MapViewType curViewType)
-        {
-            byte[] videoTiles = ConfigScript.getVideoChunk(curActiveVideoNo);
-            ObjRec[] blocks = ConfigScript.getBlocksFunc(curActiveBigBlockNo);
-            var blocksData = new byte[blocks.Length * 4]; //hardcode small blocks sizes
-            Utils.writeBlocksLinear(blocks, blocksData, 0, 256, false, false);
-            byte[] pal = ConfigScript.getPal(curActivePalleteNo);
-            int count = ConfigScript.getBigBlocksCount(ConfigScript.getbigBlocksHierarchyCount() - 1, curActiveBigBlockNo);
-            return ConfigScript.videoGb.makeBigBlocks(videoTiles, blocksData, pal, count, curViewType);
-        }
-
         public static byte[] romdata;
         public static byte[] dumpdata;
         public static int chunksCount = 256;
         public static int videoPageSize = 4096;
         public static int palLen = 16;
-        public static int segaPalLen = 128;
     }
 }

@@ -1,1 +1,0 @@
-moved to separate project https://github.com/spiiin/JupyterCadEditor

@@ -29,11 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginVideoNes", "..\Plugin
 		{BD2A990C-9D64-472D-9C78-1429C666604B} = {BD2A990C-9D64-472D-9C78-1429C666604B}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginVideoSega", "..\PluginVideoSega\PluginVideoSega.csproj", "{64BDE26D-C9E7-4617-85E4-1FFB53E373AD}"
-	ProjectSection(ProjectDependencies) = postProject
-		{BD2A990C-9D64-472D-9C78-1429C666604B} = {BD2A990C-9D64-472D-9C78-1429C666604B}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginExportScreens", "..\PluginExportScreens\PluginExportScreens.csproj", "{FDB942A3-33FE-4236-B617-E4D2A3AC00B1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{BD2A990C-9D64-472D-9C78-1429C666604B} = {BD2A990C-9D64-472D-9C78-1429C666604B}
@@ -46,21 +41,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginChrView", "..\PluginC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginEditLayout", "..\PluginEditLayout\PluginEditLayout.csproj", "{0A1C83B2-823F-44F0-9ABA-9F252AC4F93B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginSegaBackEditor", "..\PluginSegaBackEditor\PluginSegaBackEditor.csproj", "{1DFBB313-4FC3-432C-A2A5-27A5315CF772}"
-	ProjectSection(ProjectDependencies) = postProject
-		{BD2A990C-9D64-472D-9C78-1429C666604B} = {BD2A990C-9D64-472D-9C78-1429C666604B}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingsViewer", "..\SettingsViewer\SettingsViewer.csproj", "{6D34882E-6A7D-4EA1-ADB2-07C0E21D521D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginCompressLZKN", "..\PluginCompressLZKN\PluginCompressLZKN.csproj", "{5C7B206B-B8CC-43B1-9A98-9B03DE68A480}"
 	ProjectSection(ProjectDependencies) = postProject
 		{BD2A990C-9D64-472D-9C78-1429C666604B} = {BD2A990C-9D64-472D-9C78-1429C666604B}
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginVideoGameBoy", "..\PluginVideoGameBoy\PluginVideoGameBoy.csproj", "{FE11A47E-3230-43A3-A391-DF27873B0082}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginBattletoadsRaceEditor", "..\PluginBattletoadsRaceEditor\PluginBattletoadsRaceEditor.csproj", "{1A367851-994F-4C1E-934F-70FA72449DEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

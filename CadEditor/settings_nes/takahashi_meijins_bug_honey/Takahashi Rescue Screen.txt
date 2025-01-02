@@ -1,2 +1,0 @@
-Offset: 14f53-15312 (tilemap)
-Palette: 15313-15352

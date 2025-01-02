@@ -60,17 +60,9 @@ namespace CadEditor
 
         private Form makeBlocksEditor()
         {
-            if (!ConfigScript.isUseSegaGraphics()) //isUseGbGraphics
-            {
-                var f = new BlockEdit();
-                f.setFormMain(this);
-                return f;
-            }
-            else
-            {
-                var f = new SegaBlockEdit();
-                return f;
-            }
+            var f = new BlockEdit();
+            f.setFormMain(this);
+            return f;
         }
 
         private void resetScreens()
@@ -197,18 +189,7 @@ namespace CadEditor
 
                 if (needRebuildBlocks)
                 {
-                    if (ConfigScript.isUseSegaGraphics())
-                    {
-                        bigBlocks = Globals.makeSegaBigBlocks(curActiveVideoNo, curActiveBigBlockNo, curActivePalleteNo, curActiveViewType);
-                    }
-                    else if (ConfigScript.isUseGbGraphics())
-                    {
-                        bigBlocks = Globals.makeGbBigBlocks(curActiveVideoNo, curActiveBigBlockNo, curActivePalleteNo, curActiveViewType);
-                    }
-                    else
-                    {
-                        bigBlocks = ConfigScript.videoNes.makeBigBlocks(curActiveVideoNo, curActiveBigBlockNo, curActiveBlockNo, curActivePalleteNo, smallObjectsType, curActiveViewType, ConfigScript.getbigBlocksHierarchyCount() - 1);
-                    }
+                    bigBlocks = ConfigScript.videoNes.makeBigBlocks(curActiveVideoNo, curActiveBigBlockNo, curActiveBlockNo, curActivePalleteNo, smallObjectsType, curActiveViewType, ConfigScript.getbigBlocksHierarchyCount() - 1);
                 }
             }
 
@@ -1066,10 +1047,6 @@ namespace CadEditor
             }
             if (ConfigScript.videoNes != null)
                 sb.Append(ConfigScript.videoNes.getName() + "\n");
-            if (ConfigScript.videoSega != null)
-                sb.Append(ConfigScript.videoSega.getName() + "\n");
-            if (ConfigScript.videoGb != null)
-                sb.Append(ConfigScript.videoGb.getName() + "\n");
             MessageBox.Show(sb.ToString());
         }
 

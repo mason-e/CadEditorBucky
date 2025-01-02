@@ -1,3 +1,0 @@
-Titlescreen
-Offset: 3fc10-3ffcf (tilemap)
-Palette: 3ffd0-4000f

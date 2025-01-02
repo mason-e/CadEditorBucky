@@ -1,3 +1,0 @@
-Title screen
-Bytes (ROM): 7D37-7DFD
-Using RLE (edit title screen carefully)
