@@ -830,13 +830,6 @@ namespace CadEditor
             OnResize(e);
         }
 
-        private void bttRunScript_Click(object sender, EventArgs e)
-        {
-            var f = new FormScript();
-            f.setFormMain(this);
-            f.Show();
-        }
-
         private void splitContainer1_Panel1_Resize(object sender, EventArgs e)
         {
             pnBlocks.Width = splitContainer1.Panel1.Width - pnElements.Width - 10;
@@ -860,7 +853,6 @@ namespace CadEditor
                 bttBlocks,
                 toolStripSeparator2,
 
-                bttRunScript,
                 toolStripSeparator3,
 
                 bttShowNei,

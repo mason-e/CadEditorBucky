@@ -61,7 +61,6 @@
             this.bttBigBlocks = new System.Windows.Forms.ToolStripButton();
             this.bttBlocks = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.bttRunScript = new System.Windows.Forms.ToolStripButton();
             this.bttShowNei = new System.Windows.Forms.ToolStripButton();
             this.bttAxis = new System.Windows.Forms.ToolStripButton();
             this.bttShowBrush = new System.Windows.Forms.ToolStripButton();
@@ -421,7 +420,6 @@
             this.bttBigBlocks,
             this.bttBlocks,
             this.toolStripSeparator2,
-            this.bttRunScript,
             this.toolStripSeparator3,
             this.bttShowNei,
             this.bttAxis,
@@ -506,16 +504,6 @@
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bttRunScript
-            // 
-            this.bttRunScript.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bttRunScript.Image = ((System.Drawing.Image)(resources.GetObject("bttRunScript.Image")));
-            this.bttRunScript.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bttRunScript.Name = "bttRunScript";
-            this.bttRunScript.Size = new System.Drawing.Size(24, 24);
-            this.bttRunScript.Text = "Run script";
-            this.bttRunScript.Click += new System.EventHandler(this.bttRunScript_Click);
             // 
             // bttShowNei
             // 
@@ -917,7 +905,6 @@
         private System.Windows.Forms.Panel pnBlocks;
         private System.Windows.Forms.PictureBox blocksScreen;
         private System.Windows.Forms.Panel pnViewScroll;
-        private System.Windows.Forms.ToolStripButton bttRunScript;
         private System.Windows.Forms.ToolStripButton bttAdditionalRender;
         private System.Windows.Forms.ToolStripButton bttPhysicsLayerRender;
         private System.Windows.Forms.ToolStripMenuItem tsLayerPhysics;
