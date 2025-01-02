@@ -323,11 +323,7 @@ namespace CadEditor
 
         private static void loadGlobalPlugins()
         {
-            //auto load plugins
-            loadPluginWithSilentCatch(() => addPlugin("PluginHexEditor.dll"));
-
             //auto load video plugins
-
             loadPluginWithSilentCatch(() => videoNes = PluginLoader.loadPlugin<IVideoPluginNes>("PluginVideoNes.dll"));
         }
 
