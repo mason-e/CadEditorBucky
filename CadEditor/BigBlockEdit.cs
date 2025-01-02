@@ -33,7 +33,6 @@ namespace CadEditor
 
             readOnly = false; //must be read from config
             tbbSave.Enabled = !readOnly;
-            //tbbImport.Enabled = !readOnly;
         }
 
         protected void reloadBlocksPanel()
@@ -120,24 +119,6 @@ namespace CadEditor
             {
                 smallBlocksImages[i] = ConfigScript.videoNes.makeObjects(curVideo, curTileset, curPallete, curViewType, i);
             }
-        }
-
-        private void exportPictures(string filename)
-        {
-            //bigBlocksImages = ConfigScript.videoNes.makeBigBlocks(curVideo, curTileset, bigBlockIndexes, curPallete, curViewType, 1, 2.0f, MapViewType.Tiles, false, curHierarchyLevel);
-            var result = UtilsGDI.GlueImages(bigBlocksImages,bigBlocksImages.Length, 1);
-            result.Save(filename);
-        }
-
-        protected virtual void exportBlocks()
-        {
-            var f = new SelectFile() { filename = "exportedBigBlocks.png", showExportParams = true };
-            f.ShowDialog();
-            if (!f.result)
-                return;
-            var fn = f.filename;
-            //TODO: add export binaries //if (f.getExportType() == ExportType.Binary)
-            exportPictures(fn);
         }
 
         protected BigBlock[] bigBlockIndexes;
@@ -373,26 +354,6 @@ namespace CadEditor
             updateSaveVisibility();
             bigBlocksImages = ConfigScript.videoNes.makeBigBlocks(curVideo, curBigBlockNo, curTileset, bigBlockIndexes, curPallete, curViewType, MapViewType.Tiles, curHierarchyLevel);
             mapScreen.Invalidate();
-        }
-
-        protected void btExport_Click(object sender, EventArgs e)
-        {
-            exportBlocks();
-        }
-
-        protected void btImport_Click(object sender, EventArgs e)
-        {
-            /*var f = new SelectFile() { Filename = "exportedBigBlocks.bin" };
-            f.ShowDialog();
-            if (!f.Result)
-                return;
-            var fn = f.Filename;
-            var data = Utils.loadDataFromFile(fn);
-            //move to configs?
-            bigBlockIndexes = Utils.unlinearizeBigBlocks<BigBlock>(data, 2,2);
-            reloadLevel(false);
-            dirty = true;
-            updateSaveVisibility();*/
         }
 
         public void setFormMain(FormMain f)

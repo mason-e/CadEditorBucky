@@ -61,8 +61,6 @@
             this.lbActive = new System.Windows.Forms.Label();
             this.lbPanelNo = new System.Windows.Forms.Label();
             this.cbPanelNo = new System.Windows.Forms.ComboBox();
-            this.btImport = new System.Windows.Forms.Button();
-            this.btExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.paletteMap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mapScreen)).BeginInit();
             this.pnGeneric.SuspendLayout();
@@ -405,28 +403,6 @@
             this.cbPanelNo.TabIndex = 61;
             this.cbPanelNo.SelectedIndexChanged += new System.EventHandler(this.cbPanelNo_SelectedIndexChanged);
             // 
-            // btImport
-            // 
-            this.btImport.Enabled = false;
-            this.btImport.Location = new System.Drawing.Point(189, 5);
-            this.btImport.Margin = new System.Windows.Forms.Padding(4);
-            this.btImport.Name = "btImport";
-            this.btImport.Size = new System.Drawing.Size(79, 28);
-            this.btImport.TabIndex = 25;
-            this.btImport.Text = "import";
-            this.btImport.UseVisualStyleBackColor = true;
-            // 
-            // btExport
-            // 
-            this.btExport.Enabled = false;
-            this.btExport.Location = new System.Drawing.Point(103, 5);
-            this.btExport.Margin = new System.Windows.Forms.Padding(4);
-            this.btExport.Name = "btExport";
-            this.btExport.Size = new System.Drawing.Size(79, 28);
-            this.btExport.TabIndex = 26;
-            this.btExport.Text = "export";
-            this.btExport.UseVisualStyleBackColor = true;
-            // 
             // BlockEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -436,8 +412,6 @@
             this.Controls.Add(this.cbPanelNo);
             this.Controls.Add(this.lbActive);
             this.Controls.Add(this.cbShowAxis);
-            this.Controls.Add(this.btExport);
-            this.Controls.Add(this.btImport);
             this.Controls.Add(this.btFlipVertical);
             this.Controls.Add(this.btFlipHorizontal);
             this.Controls.Add(this.btClear);
@@ -507,7 +481,5 @@
         private System.Windows.Forms.Label lbActive;
         private System.Windows.Forms.Label lbPanelNo;
         private System.Windows.Forms.ComboBox cbPanelNo;
-        private System.Windows.Forms.Button btImport;
-        private System.Windows.Forms.Button btExport;
     }
 }

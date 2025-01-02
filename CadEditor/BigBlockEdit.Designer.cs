@@ -54,8 +54,6 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tbbSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tbbExport = new System.Windows.Forms.ToolStripButton();
-            this.tbbImport = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tbbDeleteAll = new System.Windows.Forms.ToolStripButton();
             this.label4 = new System.Windows.Forms.Label();
@@ -381,8 +379,6 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tbbSave,
             this.toolStripSeparator2,
-            this.tbbExport,
-            this.tbbImport,
             this.toolStripSeparator1,
             this.tbbDeleteAll});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -405,27 +401,6 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // tbbExport
-            // 
-            this.tbbExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbbExport.Image = ((System.Drawing.Image)(resources.GetObject("tbbExport.Image")));
-            this.tbbExport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbbExport.Name = "tbbExport";
-            this.tbbExport.Size = new System.Drawing.Size(24, 24);
-            this.tbbExport.Text = "Export";
-            this.tbbExport.Click += new System.EventHandler(this.btExport_Click);
-            // 
-            // tbbImport
-            // 
-            this.tbbImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbbImport.Enabled = false;
-            this.tbbImport.Image = ((System.Drawing.Image)(resources.GetObject("tbbImport.Image")));
-            this.tbbImport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbbImport.Name = "tbbImport";
-            this.tbbImport.Size = new System.Drawing.Size(24, 24);
-            this.tbbImport.Text = "Import";
-            this.tbbImport.Click += new System.EventHandler(this.btImport_Click);
             // 
             // toolStripSeparator1
             // 
@@ -501,8 +476,6 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tbbSave;
-        private System.Windows.Forms.ToolStripButton tbbExport;
-        private System.Windows.Forms.ToolStripButton tbbImport;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tbbDeleteAll;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;

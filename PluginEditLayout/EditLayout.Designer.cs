@@ -50,7 +50,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.pnDoors = new System.Windows.Forms.Panel();
             this.pnSelectScroll = new System.Windows.Forms.Panel();
-            this.btExport = new System.Windows.Forms.Button();
             this.pnParamGeneric = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -251,16 +250,6 @@
             this.pnSelectScroll.Size = new System.Drawing.Size(337, 65);
             this.pnSelectScroll.TabIndex = 51;
             // 
-            // btExport
-            // 
-            this.btExport.Location = new System.Drawing.Point(337, 312);
-            this.btExport.Name = "btExport";
-            this.btExport.Size = new System.Drawing.Size(64, 22);
-            this.btExport.TabIndex = 52;
-            this.btExport.Text = "export";
-            this.btExport.UseVisualStyleBackColor = true;
-            this.btExport.Click += new System.EventHandler(this.btExport_Click);
-            // 
             // pnParamGeneric
             // 
             this.pnParamGeneric.Controls.Add(this.label10);
@@ -412,7 +401,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(967, 533);
             this.Controls.Add(this.pnParamGeneric);
-            this.Controls.Add(this.btExport);
             this.Controls.Add(this.pnSelectScroll);
             this.Controls.Add(this.pnGeneric);
             this.Controls.Add(this.pnDoors);
@@ -467,7 +455,6 @@
         private System.Windows.Forms.ComboBox cbLayoutNo;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Panel pnSelectScroll;
-        private System.Windows.Forms.Button btExport;
         private System.Windows.Forms.Panel pnParamGeneric;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cbPaletteNo;

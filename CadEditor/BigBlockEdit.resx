@@ -140,36 +140,6 @@
         FwN4N4A13eSdAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="tbbExport.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAH7SURBVDhPY6AZMC1hkLAtZlc0TmNghQoRBwL6BMMKN5qe
-        KNht8i57v+Hfwu2GjzMWG22wBxoIVYIbRM9WbKg/6vMl/5D+99qTJv8LT0r/T97N/z95k9j/zMX6d5wr
-        GNSgSjFBYLe4U9Nm75cRU+Q7bIrY1Bzr2YIyFxucS10v+z9wHvv/sIX8/1Nm6R2DKscEKTN1Tgb1SwZA
-        uWBgU8kgmjFX7yHIABDOXC7/y6KWxRoqjQABbVLC4RMUD0K5KCBppu6K8IUCYANSVyr/92kXbIJKIUD0
-        ApnAoD5RuMm21WwVsdPV96bPNtqdvcDmRtxSSbABSSvk/2ctsLiaPs9od8I0rT32laypYA0BMzgsGf4z
-        MII5IFDPwOTdITgpfr7856D5nGDNMBw8n+t/9jLDT8E9Um1AlRA9fnM4pcAMBGACYmbneq64yNmyD2Fe
-        iFwk9D9jmdFjz2a+cIgyKAhZycAJpFiAmB2IuYGYD4gFgFhIM5jBMKhH4ljiUvn/MVNVzxqkM2gBxdmA
-        GGQJBGhpgQVAhvACsRAQiwExyFVyQCzPJ8ugbF/KMUXcjEERyOcHYpAlKIYwAzEHEPMAMchmESAGpTxp
-        KAYZBjIUZDjIdVxADEriiHADAhAHJAgyCGQDyDUgxSAbQTTIcJBGkDdBFhIEIAORMS0AAwMAKeSRjhlZ
-        sREAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="tbbImport.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAILSURBVDhPY8AH9s9nEIAySQfXd0jmXt+ttRXKJQ3c2Kc1
-        /enT+l/PLycdggoRB1atYmB+cNp7+/PbbX8/P4n7//xq8mGoFGFwZiYD18PTQcde3mv+9/VZ7v8vT+L/
-        f7hT8+XJ5ZC790+47j63icceqhQTnFnKIPL8YtzVby8b/n99lvP/y9PU/58euP9/d437/9srDP/fXRf4
-        /+am35drO+RaoVpQAdB21ntAW57drPr3+UkMULPn/7dX2cCaEZgRiN2+XdrAHQ3Vhgr+1zMw3T9uv+rJ
-        lcQ/765yAA1g/v/4YuDH55ed3r+7pQM24N01zv+PzrmfgWrBDm4dUJv05rbFj7dXWf4/Ou+7Z/8qBp5r
-        u5UnvLnh/QXkkudn7d8emcPAC1WOHVzbo1APci7IAKgQw8296rPf39b4/+qq5RegAVJQYZyA8fI20azL
-        uxS3AdnMQMx0dB6D6f1TNv+eXXB/CPIuWBUSYARiViDmAGJuIOYDYoGUEAZFIC0IYu9ZwJPy6WHK/xv7
-        tJcC+SxADAcgzWxAzAXE/EAsDMTiQCwNxHJALKuvzqBwebfq4hsHtZc6m4LlOYEYbgjMdpABIJuFgBhk
-        AMifMvH+DAbbZjOkbZjOEKIiwSAKFAMFIIoBMAASYAdikEEgRSDXgHIjiAYZzAPEII0g12KEAToAuQqE
-        QQpBGMZHAwwMAJhj3YvU3K0tAAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="tbbDeleteAll.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

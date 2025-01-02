@@ -40,8 +40,6 @@
             this.cbVideoNo = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbShowNo = new System.Windows.Forms.CheckBox();
-            this.btExport = new System.Windows.Forms.Button();
-            this.btImport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbVideo)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPal)).BeginInit();
@@ -57,8 +55,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btImport);
-            this.panel1.Controls.Add(this.btExport);
             this.panel1.Controls.Add(this.cbShowNo);
             this.panel1.Controls.Add(this.btSave);
             this.panel1.Controls.Add(this.label3);
@@ -164,26 +160,6 @@
             this.cbShowNo.UseVisualStyleBackColor = true;
             this.cbShowNo.CheckedChanged += new System.EventHandler(this.cbShowNo_CheckedChanged);
             // 
-            // btExport
-            // 
-            this.btExport.Location = new System.Drawing.Point(3, 308);
-            this.btExport.Name = "btExport";
-            this.btExport.Size = new System.Drawing.Size(131, 23);
-            this.btExport.TabIndex = 7;
-            this.btExport.Text = "Export";
-            this.btExport.UseVisualStyleBackColor = true;
-            this.btExport.Click += new System.EventHandler(this.btExport_Click);
-            // 
-            // btImport
-            // 
-            this.btImport.Location = new System.Drawing.Point(3, 337);
-            this.btImport.Name = "btImport";
-            this.btImport.Size = new System.Drawing.Size(131, 23);
-            this.btImport.TabIndex = 8;
-            this.btImport.Text = "Import";
-            this.btImport.UseVisualStyleBackColor = true;
-            this.btImport.Click += new System.EventHandler(this.btImport_Click);
-            // 
             // EditVideo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -218,7 +194,5 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbPalleteNo;
         private System.Windows.Forms.CheckBox cbShowNo;
-        private System.Windows.Forms.Button btImport;
-        private System.Windows.Forms.Button btExport;
     }
 }

@@ -95,31 +95,5 @@ namespace CadEditor
             showNo = cbShowNo.Checked;
             setPal();
         }
-
-        private void btExport_Click(object sender, EventArgs e)
-        {
-            var f = new SelectFile {filename = "exportedConfigScript.videoNes.bin"};
-            f.ShowDialog();
-            if (!f.result)
-                return;
-            var data = ConfigScript.getVideoChunk(curActiveVideo);
-            Utils.saveDataToFile(f.filename, data);
-        }
-
-        private void btImport_Click(object sender, EventArgs e)
-        {
-            var f = new SelectFile {filename = "exportedConfigScript.videoNes.bin"};
-            f.ShowDialog();
-            if (!f.result)
-                return;
-            var fn = f.filename;
-            var data = Utils.loadDataFromFile(fn);
-            if (data == null)
-                return;
-            ConfigScript.setVideoChunk(curActiveVideo, data);
-
-            //dirty = true;
-            reloadVideo();
-        }
     }
 }

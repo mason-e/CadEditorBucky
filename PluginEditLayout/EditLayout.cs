@@ -88,8 +88,6 @@ namespace CadEditor
             cbLayoutNo.SelectedIndex = 0;
 
             cbShowScrolls.Visible = ConfigScript.isShowScrollsInLayout();
-            btExport.Visible =
-            pnParamGeneric.Visible = true;
         }
 
         private void reloadLevelLayer()
@@ -182,7 +180,6 @@ namespace CadEditor
 
         private int curActiveLayout;
 
-        //for export params
         private int curVideoNo;
         private int curBigBlockNo;
         private int curBlockNo;
@@ -303,18 +300,6 @@ namespace CadEditor
                 }
             }
             return answer;
-        }
-
-        private void btExport_Click(object sender, EventArgs e)
-        {
-            var f = new SelectFile();
-            f.filename = "level.png";
-            f.ShowDialog();
-            if (!f.result)
-                return;
-            var fn = f.filename;
-            Bitmap levelImage = makeLevelImage();
-            levelImage.Save(fn);
         }
 
         private void cbVideoNo_SelectedIndexChanged(object sender, EventArgs e)
