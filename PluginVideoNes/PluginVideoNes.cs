@@ -264,16 +264,9 @@ namespace PluginVideoNes
             for (int btileId = 0; btileId < blockCount; btileId++)
             {
                 Image b;
-                if (ConfigScript.isBuildScreenFromSmallBlocks())
-                {
-                    var sb = smallBlocksPack[btileId];
-                    //scale for small blocks
-                    b = UtilsGDI.ResizeBitmap(sb, (int)(sb.Width * 2), (int)(sb.Height * 2));
-                }
-                else
-                {
-                    b = bigBlockIndexes[btileId].makeBigBlock(smallBlocksAll);
-                }
+                var sb = smallBlocksPack[btileId];
+                //scale for small blocks
+                b = UtilsGDI.ResizeBitmap(sb, (int)(sb.Width * 2), (int)(sb.Height * 2));
                 if (curViewType == MapViewType.ObjNumbers)
                     b = VideoHelper.addObjNumber(b, btileId);
                 bigBlocks[btileId] = b;

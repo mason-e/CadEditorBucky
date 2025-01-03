@@ -190,7 +190,6 @@ namespace CadEditor
             wordLen = callFromScript(asm, data, "*.getWordLen", 1);
             littleEndian = callFromScript(asm, data, "*.isLittleEndian", false);
             blockSize4x4 = callFromScript(asm, data, "*.isBlockSize4x4", false);
-            buildScreenFromSmallBlocks = callFromScript(asm, data, "isBuildScreenFromSmallBlocks", false);
             getLevelRecsFunc = callFromScript<GetLevelRecsFunc>(asm, data, "*.getLevelRecsFunc", ConfigScript.getLevelRecsFuncDefault());
 
             //todo: remove or change to many lists interface
@@ -229,12 +228,6 @@ namespace CadEditor
             getBigBlocksFuncs = callFromScript<GetBigBlocksFunc[]>(asm, data, "*.getBigBlocksFuncs", new GetBigBlocksFunc[1]);
             setBigBlocksFuncs = callFromScript<SetBigBlocksFunc[]>(asm, data, "*.setBigBlocksFuncs", new SetBigBlocksFunc[1]);
             getBigBlocksAddrFuncs = callFromScript<GetBigBlocksAddrFunc[]>(asm, data, "*.getBigBlocksAddrFuncs", new GetBigBlocksAddrFunc[1]);
-            if (!buildScreenFromSmallBlocks)
-            {
-                getBigBlocksFuncs[0] = callFromScript<GetBigBlocksFunc>(asm, data, "*.getBigBlocksFunc", getBigBlocksFuncs[0]);
-                setBigBlocksFuncs[0] = callFromScript<SetBigBlocksFunc>(asm, data, "*.setBigBlocksFunc", setBigBlocksFuncs[0]);
-                getBigBlocksAddrFuncs[0] = callFromScript<GetBigBlocksAddrFunc>(asm, data, "*.getBigBlocksAddrFunc", getBigBlocksAddrFuncs[0]);
-            }
 
             getBlocksFunc = callFromScript<GetBlocksFunc>(asm,data,"*.getBlocksFunc");
             setBlocksFunc = callFromScript<SetBlocksFunc>(asm, data, "*.setBlocksFunc");
@@ -551,11 +544,6 @@ namespace CadEditor
             return littleEndian;
         }
 
-        public static bool isBuildScreenFromSmallBlocks()
-        {
-            return buildScreenFromSmallBlocks;
-        }
-
         public static int getBlocksPicturesWidth()
         {
             return blocksPicturesWidth;
@@ -697,7 +685,6 @@ namespace CadEditor
         public static int screenDataStride;
         public static int wordLen;
         public static bool littleEndian;
-        public static bool buildScreenFromSmallBlocks;
 
         public static bool useGbGraphics;
         public static bool blockSize4x4;

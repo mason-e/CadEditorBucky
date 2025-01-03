@@ -20,7 +20,7 @@ namespace CadEditor
 
         private void setDefaultScale()
         {
-            curScale = ConfigScript.isBuildScreenFromSmallBlocks() ? 1 : 2;
+            curScale = 1;
             if (ConfigScript.getDefaultScale() > 0)
             {
                 curScale = ConfigScript.getDefaultScale();

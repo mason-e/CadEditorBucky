@@ -5,9 +5,7 @@ using System;
 public class Data 
 { 
   public OffsetRec getScreensOffset()  { return new OffsetRec(0x90c0, 1 , 8*25, 8, 25);   }
-  
-  public bool isBuildScreenFromSmallBlocks() { return true; }
-  
+    
   public bool isBlockEditorEnabled()    { return true; }
   
   public OffsetRec getVideoOffset()     { return new OffsetRec(0x0 , 2   , 0x1000);  }

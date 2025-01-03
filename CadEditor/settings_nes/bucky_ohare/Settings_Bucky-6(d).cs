@@ -6,8 +6,6 @@ public class Data
 { 
   public OffsetRec getScreensOffset()  { return new OffsetRec(0xbc4f, 1 , 8*10, 8, 10);   }
   
-  public bool isBuildScreenFromSmallBlocks() { return true; }
-  
   public bool isBlockEditorEnabled()    { return true; }
   
   public OffsetRec getVideoOffset()     { return new OffsetRec(0x0 , 1   , 0x1000);  }
