@@ -72,7 +72,6 @@
             this.x3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.x4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsLayer1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.bttAdditionalRender = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tbbShowPluginInfo = new System.Windows.Forms.ToolStripButton();
             this.tbbShowInfo = new System.Windows.Forms.ToolStripButton();
@@ -418,7 +417,6 @@
             this.bttShowBrush,
             this.toolStripSeparator4,
             this.bttScale,
-            this.bttAdditionalRender,
             this.toolStripSeparator5,
             this.tbbShowPluginInfo,
             this.tbbShowInfo});
@@ -586,19 +584,6 @@
             this.tsLayer1.Name = "tsLayer1";
             this.tsLayer1.Size = new System.Drawing.Size(170, 26);
             this.tsLayer1.Text = "Layer 1";
-            // 
-            // bttAdditionalRender
-            // 
-            this.bttAdditionalRender.Checked = true;
-            this.bttAdditionalRender.CheckOnClick = true;
-            this.bttAdditionalRender.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.bttAdditionalRender.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bttAdditionalRender.Image = ((System.Drawing.Image)(resources.GetObject("bttAdditionalRender.Image")));
-            this.bttAdditionalRender.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bttAdditionalRender.Name = "bttAdditionalRender";
-            this.bttAdditionalRender.Size = new System.Drawing.Size(24, 24);
-            this.bttAdditionalRender.Text = "Enable additional render";
-            this.bttAdditionalRender.CheckedChanged += new System.EventHandler(this.bttAdditionalRender_CheckedChanged);
             // 
             // toolStripSeparator5
             // 
@@ -815,7 +800,6 @@
         private System.Windows.Forms.Panel pnBlocks;
         private System.Windows.Forms.PictureBox blocksScreen;
         private System.Windows.Forms.Panel pnViewScroll;
-        private System.Windows.Forms.ToolStripButton bttAdditionalRender;
         private System.Windows.Forms.ToolStripSeparator sToolButtons;
     }
 }

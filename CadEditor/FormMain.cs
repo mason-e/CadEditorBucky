@@ -113,10 +113,6 @@ namespace CadEditor
 
             bttBlocks.Enabled = true;
 
-            bool isAdditionalRender = ConfigScript.renderToMainScreenFunc != null;
-
-            bttAdditionalRender.Visible = isAdditionalRender;
-
             tsLayer1.Enabled = true;
 
             curActiveLayer = 0;
@@ -796,7 +792,6 @@ namespace CadEditor
                 toolStripSeparator4,
 
                 bttScale,
-                bttAdditionalRender,
                 toolStripSeparator5,
 
                 tbbShowInfo,
@@ -815,13 +810,6 @@ namespace CadEditor
         {
             bttScale.ShowDropDown();
         }
-
-        private void bttAdditionalRender_CheckedChanged(object sender, EventArgs e)
-        {
-            additionalRenderEnabled = bttAdditionalRender.Checked;
-            mapScreen.Invalidate();
-        }
-
 
         public void addToolButton(ToolStripItem item)
         {
