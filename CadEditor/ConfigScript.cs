@@ -12,8 +12,6 @@ namespace CadEditor
     public delegate byte[] GetVideoChunkFunc(int videoPageId);
     public delegate void   SetVideoChunkFunc(int videoPageId, byte[] videoChunk);
 
-    public delegate ObjRec[] GetBlocksFunc(int blockId);
-    public delegate void   SetBlocksFunc(int blockIndex, ObjRec[] blocksData);
     public delegate int GetBlocksAddrFunc(int blockId);
     public delegate int GetBlocksCountFunc(int blockId);
 
@@ -229,8 +227,6 @@ namespace CadEditor
             setBigBlocksFuncs = callFromScript<SetBigBlocksFunc[]>(asm, data, "*.setBigBlocksFuncs", new SetBigBlocksFunc[1]);
             getBigBlocksAddrFuncs = callFromScript<GetBigBlocksAddrFunc[]>(asm, data, "*.getBigBlocksAddrFuncs", new GetBigBlocksAddrFunc[1]);
 
-            getBlocksFunc = callFromScript<GetBlocksFunc>(asm,data,"*.getBlocksFunc");
-            setBlocksFunc = callFromScript<SetBlocksFunc>(asm, data, "*.setBlocksFunc");
             getBlocksAddrFunc = callFromScript<GetBlocksAddrFunc> (asm, data, "*.getBlocksAddrFunc");
             getPalFunc = callFromScript<GetPalFunc>(asm, data, "*.getPalFunc");
             setPalFunc = callFromScript<SetPalFunc>(asm, data, "*.setPalFunc");
@@ -368,12 +364,12 @@ namespace CadEditor
 
         public static ObjRec[] getBlocks(int bigBlockId)
         {
-            return (getBlocksFunc ?? (_ => null))(bigBlockId);
+            return Utils.getBlocksFromTiles16Pal1(bigBlockId);
         }
 
         public static void setBlocks(int bIndex, ObjRec[] blocks)
         {
-            setBlocksFunc(bIndex, blocks);
+            Utils.setBlocksFromTiles16Pal1(bIndex, blocks);
         }
 
         public static byte[] getPal(int palId)
@@ -709,8 +705,6 @@ namespace CadEditor
         public static GetBigBlocksCountFunc getBigBlocksCountFunc;
 
         public static int blocksCount;
-        public static GetBlocksFunc getBlocksFunc;
-        public static SetBlocksFunc setBlocksFunc;
         public static GetBlocksAddrFunc getBlocksAddrFunc;
         public static GetBlocksCountFunc getBlocksCountFunc;
 

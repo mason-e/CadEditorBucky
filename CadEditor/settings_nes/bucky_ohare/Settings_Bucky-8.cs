@@ -16,8 +16,6 @@ public class Data
   public int getBlocksCount()           { return 244; }
   public int getBigBlocksCount()        { return 244; }
   public int getPalBytesAddr()          { return 0x3742; }
-  public GetBlocksFunc        getBlocksFunc() { return Utils.getBlocksFromTiles16Pal1;}
-  public SetBlocksFunc        setBlocksFunc() { return Utils.setBlocksFromTiles16Pal1;}
   
   public GetPalFunc           getPalFunc()           { return BuckyUtils.readPalFromBin(new[] {"pal8(a).bin", "pal8(b).bin", "pal8(c).bin"}); }
   public SetPalFunc           setPalFunc()           { return null;}
