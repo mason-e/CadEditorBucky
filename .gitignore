@@ -6,18 +6,9 @@
 /CadEditor/.vs
 /CadEditor/bin
 /CadEditor/obj
-/PluginMapEditor/.vs
-/PluginMapEditor/bin
-/PluginMapEditor/obj
 /PluginVideoNes/.vs
 /PluginVideoNes/bin
 /PluginVideoNes/obj
-/PluginCompressLZKN/bin
-/PluginCompressLZKN/obj
-/SettingsVerifier/.vs
-/SettingsVerifier/bin
-/SettingsVerifier/obj
-/SettingsViewer/obj
 /CadEditor/*.pdb
 /CadEditor/*.deb
 
@@ -25,4 +16,3 @@
 CadEditor/CadEditor.exe.config
 CadEditor/ConfigViewer.exe.config
 CadEditor/CSScriptLibrary.xml
-CadEditor/SettingsVerifier.exe.config
