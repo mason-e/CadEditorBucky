@@ -21,7 +21,6 @@ namespace CadEditor
     public delegate int GetBigBlocksCountFunc(int hierLevel, int bigBlockId);
 
     public delegate byte[] GetPalFunc(int palId);
-    public delegate void   SetPalFunc(int palId, byte[] pallete);
 
     public delegate GroupRec[] GetGroupsFunc();
     public delegate IList<LevelRec> GetLevelRecsFunc();
@@ -229,7 +228,6 @@ namespace CadEditor
 
             getBlocksAddrFunc = callFromScript<GetBlocksAddrFunc> (asm, data, "*.getBlocksAddrFunc");
             getPalFunc = callFromScript<GetPalFunc>(asm, data, "*.getPalFunc");
-            setPalFunc = callFromScript<SetPalFunc>(asm, data, "*.setPalFunc");
             getObjectsFunc = callFromScript<GetObjectsFunc>(asm, data, "*.getObjectsFunc");
             setObjectsFunc = callFromScript<SetObjectsFunc>(asm, data, "*.setObjectsFunc");
             sortObjectsFunc = callFromScript<SortObjectsFunc>(asm, data, "*.sortObjectsFunc");
@@ -375,12 +373,6 @@ namespace CadEditor
         public static byte[] getPal(int palId)
         {
             return (getPalFunc ?? (_ => null))(palId);
-        }
-
-
-        public static void setPal(int palId, byte[] pallete)
-        {
-            setPalFunc(palId, pallete);
         }
 
         public static List<ObjectList> getObjects(int levelNo)
@@ -709,7 +701,6 @@ namespace CadEditor
         public static GetBlocksCountFunc getBlocksCountFunc;
 
         public static GetPalFunc getPalFunc;
-        public static SetPalFunc setPalFunc;
 
         public static GetObjectsFunc getObjectsFunc;
         public static SetObjectsFunc setObjectsFunc;

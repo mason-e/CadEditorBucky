@@ -18,5 +18,4 @@ public class Data
   public int getPalBytesAddr()          { return 0x96b8; }
   
   public GetPalFunc           getPalFunc()           { return BuckyUtils.readPalFromBin(new[] {"pal2(b).bin", "pal2(c).bin"}); }
-  public SetPalFunc           setPalFunc()           { return null;}
 }
