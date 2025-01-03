@@ -71,13 +71,7 @@
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.x3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.x4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bttShowLayer1 = new System.Windows.Forms.ToolStripButton();
-            this.bttShowLayer2 = new System.Windows.Forms.ToolStripButton();
-            this.bttPhysicsLayerRender = new System.Windows.Forms.ToolStripButton();
-            this.bttLayer = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsLayer1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsLayer2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsLayerPhysics = new System.Windows.Forms.ToolStripMenuItem();
             this.bttAdditionalRender = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tbbShowPluginInfo = new System.Windows.Forms.ToolStripButton();
@@ -424,10 +418,6 @@
             this.bttShowBrush,
             this.toolStripSeparator4,
             this.bttScale,
-            this.bttShowLayer1,
-            this.bttShowLayer2,
-            this.bttPhysicsLayerRender,
-            this.bttLayer,
             this.bttAdditionalRender,
             this.toolStripSeparator5,
             this.tbbShowPluginInfo,
@@ -591,74 +581,11 @@
             this.x4ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.x4ToolStripMenuItem.Text = "x4";
             // 
-            // bttShowLayer1
-            // 
-            this.bttShowLayer1.Checked = true;
-            this.bttShowLayer1.CheckOnClick = true;
-            this.bttShowLayer1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.bttShowLayer1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bttShowLayer1.Image = ((System.Drawing.Image)(resources.GetObject("bttShowLayer1.Image")));
-            this.bttShowLayer1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bttShowLayer1.Name = "bttShowLayer1";
-            this.bttShowLayer1.Size = new System.Drawing.Size(24, 24);
-            this.bttShowLayer1.Text = "Show Layer 1";
-            this.bttShowLayer1.CheckedChanged += new System.EventHandler(this.bttShowLayer1_CheckedChanged);
-            // 
-            // bttShowLayer2
-            // 
-            this.bttShowLayer2.Checked = true;
-            this.bttShowLayer2.CheckOnClick = true;
-            this.bttShowLayer2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.bttShowLayer2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bttShowLayer2.Image = ((System.Drawing.Image)(resources.GetObject("bttShowLayer2.Image")));
-            this.bttShowLayer2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bttShowLayer2.Name = "bttShowLayer2";
-            this.bttShowLayer2.Size = new System.Drawing.Size(24, 24);
-            this.bttShowLayer2.Text = "Show Layer 2";
-            this.bttShowLayer2.CheckedChanged += new System.EventHandler(this.bttShowLayer2_CheckedChanged);
-            // 
-            // bttPhysicsLayerRender
-            // 
-            this.bttPhysicsLayerRender.CheckOnClick = true;
-            this.bttPhysicsLayerRender.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bttPhysicsLayerRender.Image = ((System.Drawing.Image)(resources.GetObject("bttPhysicsLayerRender.Image")));
-            this.bttPhysicsLayerRender.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bttPhysicsLayerRender.Name = "bttPhysicsLayerRender";
-            this.bttPhysicsLayerRender.Size = new System.Drawing.Size(24, 24);
-            this.bttPhysicsLayerRender.Text = "Enable physics layer render";
-            this.bttPhysicsLayerRender.CheckedChanged += new System.EventHandler(this.bttPhysicsLayerRender_CheckedChanged);
-            // 
-            // bttLayer
-            // 
-            this.bttLayer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bttLayer.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsLayer1,
-            this.tsLayer2,
-            this.tsLayerPhysics});
-            this.bttLayer.Image = ((System.Drawing.Image)(resources.GetObject("bttLayer.Image")));
-            this.bttLayer.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bttLayer.Name = "bttLayer";
-            this.bttLayer.Size = new System.Drawing.Size(34, 24);
-            this.bttLayer.Text = "Select layer";
-            this.bttLayer.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.bttLayer_DropDownItemClicked);
-            // 
             // tsLayer1
             // 
             this.tsLayer1.Name = "tsLayer1";
             this.tsLayer1.Size = new System.Drawing.Size(170, 26);
             this.tsLayer1.Text = "Layer 1";
-            // 
-            // tsLayer2
-            // 
-            this.tsLayer2.Name = "tsLayer2";
-            this.tsLayer2.Size = new System.Drawing.Size(170, 26);
-            this.tsLayer2.Text = "Layer 2";
-            // 
-            // tsLayerPhysics
-            // 
-            this.tsLayerPhysics.Name = "tsLayerPhysics";
-            this.tsLayerPhysics.Size = new System.Drawing.Size(170, 26);
-            this.tsLayerPhysics.Text = "Layer physics";
             // 
             // bttAdditionalRender
             // 
@@ -874,11 +801,7 @@
         private System.Windows.Forms.ToolStripButton bttShowBrush;
         private System.Windows.Forms.ToolStripMenuItem x025ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem x05ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripButton bttShowLayer1;
-        private System.Windows.Forms.ToolStripButton bttShowLayer2;
-        private System.Windows.Forms.ToolStripDropDownButton bttLayer;
         private System.Windows.Forms.ToolStripMenuItem tsLayer1;
-        private System.Windows.Forms.ToolStripMenuItem tsLayer2;
         private System.Windows.Forms.ToolStripButton bttReload;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton tbbShowPluginInfo;
@@ -893,8 +816,6 @@
         private System.Windows.Forms.PictureBox blocksScreen;
         private System.Windows.Forms.Panel pnViewScroll;
         private System.Windows.Forms.ToolStripButton bttAdditionalRender;
-        private System.Windows.Forms.ToolStripButton bttPhysicsLayerRender;
-        private System.Windows.Forms.ToolStripMenuItem tsLayerPhysics;
         private System.Windows.Forms.ToolStripSeparator sToolButtons;
     }
 }

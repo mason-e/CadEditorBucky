@@ -113,37 +113,19 @@ namespace CadEditor
 
             bttBlocks.Enabled = true;
 
-            bool isTwoLayers = getLayersCount() > 1;
-            bool isPhysicsLayer = ConfigScript.loadPhysicsLayerFunc != null;
             bool isAdditionalRender = ConfigScript.renderToMainScreenFunc != null;
 
-            bttShowLayer1.Visible = isTwoLayers || isPhysicsLayer;
-            bttShowLayer2.Visible = isTwoLayers;
-
             bttAdditionalRender.Visible = isAdditionalRender;
-            bttPhysicsLayerRender.Checked = false;
-            bttPhysicsLayerRender.Visible = isPhysicsLayer;
 
-            bttLayer.Visible = isTwoLayers || isPhysicsLayer;
             tsLayer1.Enabled = true;
-            tsLayer2.Enabled = isTwoLayers;
-            tsLayerPhysics.Enabled = isPhysicsLayer;
 
             curActiveLayer = 0;
-            physicsLayerSelected = false;
-            updateLayersMenuItemsChecked(curActiveLayer);
 
             pnGroups.Visible = ConfigScript.getGroups().Length > 0;
 
             updateScaleMenuItemsChecked(Array.FindIndex(scaleFactors, el => el == curScale)); //float comparasion with == is danger
-            updateLayersMenuItemsChecked(curActiveLayer);
             
             resetMapScreenSize();
-        }
-
-        private int getLayersCount()
-        {
-            return screens[screenNo].layers.Length;
         }
 
         void resetMapScreenSize()
@@ -299,7 +281,6 @@ namespace CadEditor
         private bool curClicked;
 
         private int curActiveLayer;
-        private bool physicsLayerSelected;
 
         //select rect if alt pressed
         private int selectionBeginX, selectionBeginY, selectionEndX, selectionEndY;
@@ -695,49 +676,6 @@ namespace CadEditor
             dy = e.Y / (int)(bigBlocks[0].Height * curScale);
         }
 
-        private void bttShowLayer1_CheckedChanged(object sender, EventArgs e)
-        {
-            var screen = getActiveScreen(); //TODO: for all screens
-            screen.layers[0].showLayer = bttShowLayer1.Checked;
-            mapScreen.Invalidate();
-        }
-
-        private void bttShowLayer2_CheckedChanged(object sender, EventArgs e)
-        {
-            var screen = getActiveScreen(); //TODO: for all screens
-            screen.layers[1].showLayer = bttShowLayer2.Checked;
-            mapScreen.Invalidate();
-        }
-
-        private void bttLayer_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            int selectedItem = bttLayer.DropDownItems.IndexOf(e.ClickedItem);
-            if (selectedItem == 0)
-            {
-                curActiveLayer = 0;
-                physicsLayerSelected = false;
-            }
-            else if (selectedItem == 1)
-            {
-                curActiveLayer = 1;
-                physicsLayerSelected = false;
-            }
-            else if (selectedItem == 2)
-            {
-                curActiveLayer = -1;
-                physicsLayerSelected = true;
-            }
-            updateLayersMenuItemsChecked(curActiveLayer);
-            blocksScreen.Invalidate();
-        }
-
-        private void updateLayersMenuItemsChecked(int curActiveLayer)
-        {
-            (bttLayer.DropDownItems[0] as ToolStripMenuItem).Checked = curActiveLayer == 0;
-            (bttLayer.DropDownItems[1] as ToolStripMenuItem).Checked = curActiveLayer == 1;
-            (bttLayer.DropDownItems[2] as ToolStripMenuItem).Checked = isPhysicsLayerSelected();
-        }
-
         public void reloadCallback()
         {
             bttReload_Click(null, new EventArgs());
@@ -858,10 +796,6 @@ namespace CadEditor
                 toolStripSeparator4,
 
                 bttScale,
-                bttShowLayer1,
-                bttShowLayer2,
-                bttPhysicsLayerRender,
-                bttLayer,
                 bttAdditionalRender,
                 toolStripSeparator5,
 
@@ -888,19 +822,6 @@ namespace CadEditor
             mapScreen.Invalidate();
         }
 
-        private void bttPhysicsLayerRender_CheckedChanged(object sender, EventArgs e)
-        {
-            physicsLayerEnabled = bttPhysicsLayerRender.Checked;
-            foreach (var screen in screens)
-            {
-                if (screen.physicsLayer != null)
-                {
-                    screen.physicsLayer.showLayer = physicsLayerEnabled;
-                }
-            }
-            mapScreen.Invalidate();
-            blocksScreen.Invalidate();
-        }
 
         public void addToolButton(ToolStripItem item)
         {
@@ -952,7 +873,7 @@ namespace CadEditor
 
         private bool isPhysicsLayerSelected()
         {
-            return physicsLayerSelected;
+            return false;
         }
 
         private BlockLayer getActiveLayer(Screen curScreen)
