@@ -8,7 +8,6 @@ public class Data
 
   public OffsetRec getVideoOffset()     { return new OffsetRec(0x0 , 5   , 0x1000);  }
   public OffsetRec getPalOffset  ()     { return new OffsetRec(0x0 , 5   , 16); }
-  public GetVideoPageAddrFunc getVideoPageAddrFunc() { return BuckyUtils.fakeVideoAddr(); }
   public GetVideoChunkFunc    getVideoChunkFunc()    { return BuckyUtils.getVideoChunk(new[] {"chr7(d).bin", "chr7(a).bin", "chr7(b).bin", "chr7(c).bin", "chr7(e).bin"}); }
   public SetVideoChunkFunc    setVideoChunkFunc()    { return null; }
   

@@ -8,7 +8,6 @@ using CSScriptLibrary;
 
 namespace CadEditor
 {
-    public delegate int   GetVideoPageAddrFunc(int videoPageId);
     public delegate byte[] GetVideoChunkFunc(int videoPageId);
     public delegate void   SetVideoChunkFunc(int videoPageId, byte[] videoChunk);
 
@@ -214,7 +213,6 @@ namespace CadEditor
             }
             bigBlocksOffsets[0] = callFromScript(asm, data, "*.getBigBlocksOffset", bigBlocksOffsets[0]);
 
-            getVideoPageAddrFunc = callFromScript <GetVideoPageAddrFunc>(asm, data, "*.getVideoPageAddrFunc");
             getVideoChunkFunc = callFromScript<GetVideoChunkFunc>(asm, data, "*.getVideoChunkFunc");
             setVideoChunkFunc = callFromScript<SetVideoChunkFunc>(asm, data, "*.setVideoChunkFunc");
 
@@ -323,11 +321,6 @@ namespace CadEditor
                 }
             }
             plugins.Reverse();
-        }
-
-        public static int getVideoPageAddr(int id)
-        {
-            return getVideoPageAddrFunc(id);
         }
 
         public static byte[] getVideoChunk(int videoPageId)
@@ -685,7 +678,6 @@ namespace CadEditor
         //public static IList<LevelRec> levelRecs;
         public static GetLevelRecsFunc getLevelRecsFunc;
 
-        public static GetVideoPageAddrFunc getVideoPageAddrFunc;
         public static GetVideoChunkFunc getVideoChunkFunc;
         public static SetVideoChunkFunc setVideoChunkFunc;
 
