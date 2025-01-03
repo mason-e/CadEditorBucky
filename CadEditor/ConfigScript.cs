@@ -251,8 +251,6 @@ namespace CadEditor
 
             renderToMainScreenFunc = callFromScript<RenderToMainScreenFunc>(asm, data, "*.getRenderToMainScreenFunc");
 
-            isBlockEditorEnabled = callFromScript(asm, data, "*.isBlockEditorEnabled", true);
-
             showScrollsInLayout = callFromScript(asm, data, "*.isShowScrollsInLayout", true);
             scrollsOffsetFromLayout = callFromScript(asm, data, "*.getScrollsOffsetFromLayout", 0);
             scrollByteArray = callFromScript(asm, data, "*.getScrollByteArray", new byte[0]);
@@ -746,8 +744,6 @@ namespace CadEditor
         public static int physicsBlocksCount;
 
         public static float defaultScale;
-
-        public static bool isBlockEditorEnabled;
 
         public static bool showScrollsInLayout;
         public static int scrollsOffsetFromLayout;

@@ -111,7 +111,7 @@ namespace CadEditor
             reloadGameType();
             changeLevelIndex(true);
 
-            bttBlocks.Enabled = ConfigScript.isBlockEditorEnabled;
+            bttBlocks.Enabled = true;
 
             bool isTwoLayers = getLayersCount() > 1;
             bool isPhysicsLayer = ConfigScript.loadPhysicsLayerFunc != null;

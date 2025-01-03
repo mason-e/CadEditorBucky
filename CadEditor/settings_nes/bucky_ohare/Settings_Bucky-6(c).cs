@@ -6,8 +6,6 @@ public class Data
 { 
   public OffsetRec getScreensOffset()  { return new OffsetRec(0xb7cf, 24 , 8*6, 8, 6);   }
   
-  public bool isBlockEditorEnabled()    { return true; }
-  
   public OffsetRec getVideoOffset()     { return new OffsetRec(0x0 , 2   , 0x1000);  }
   public OffsetRec getPalOffset  ()     { return new OffsetRec(0x0 , 3   , 16); }
   public GetVideoPageAddrFunc getVideoPageAddrFunc() { return BuckyUtils.fakeVideoAddr(); }

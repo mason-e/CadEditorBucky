@@ -5,8 +5,6 @@ using System;
 public class Data 
 { 
   public OffsetRec getScreensOffset()  { return new OffsetRec(0x97b9, 15 , 8*6, 8, 6);   }
-    
-  public bool isBlockEditorEnabled()    { return true; }
   
   public OffsetRec getVideoOffset()     { return new OffsetRec(0x0 , 1   , 0x1000);  }
   public OffsetRec getPalOffset  ()     { return new OffsetRec(0x0 , 2   , 16); }
