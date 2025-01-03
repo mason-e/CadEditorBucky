@@ -259,7 +259,6 @@ namespace CadEditor
             renderToMainScreenFunc = callFromScript<RenderToMainScreenFunc>(asm, data, "*.getRenderToMainScreenFunc");
 
             isBlockEditorEnabled = callFromScript(asm, data, "*.isBlockEditorEnabled", true);
-            objTypesPicturesDir = callFromScript(asm, data, "*.getObjTypesPicturesDir", "obj_sprites");
 
             showScrollsInLayout = callFromScript(asm, data, "*.isShowScrollsInLayout", true);
             scrollsOffsetFromLayout = callFromScript(asm, data, "*.getScrollsOffsetFromLayout", 0);
@@ -527,11 +526,6 @@ namespace CadEditor
             return minObjType;
         }
 
-        public static string getObjTypesPicturesDir()
-        {
-            return ConfigScript.ConfigDirectory + objTypesPicturesDir;
-        }
-
         public static string[] getBlockTypeNames()
         {
             return blockTypeNames;
@@ -774,7 +768,6 @@ namespace CadEditor
 
         public static bool usePicturesInstedBlocks;
         public static int blocksPicturesWidth;
-        public static string objTypesPicturesDir;
         private static string blocksPicturesFilename;
 
         public static GetGroupsFunc getGroupsFunc;
