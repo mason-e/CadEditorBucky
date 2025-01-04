@@ -3,6 +3,7 @@
 *.nes
 *.cache
 /.vs
+/CadEditor/packages
 /CadEditor/.vs
 /CadEditor/bin
 /CadEditor/obj
