@@ -28,13 +28,6 @@ namespace CadEditor
 
             //rebuild video
             reloadLevel();
-
-            readOnly = false; //must be read from config
-            btSave.Enabled = !readOnly;
-            lbReadOnly.Visible = readOnly;
-            btFlipHorizontal.Visible = !readOnly;
-            btFlipVertical.Visible = !readOnly;
-            //btImport.Visible = !readOnly;
         }
 
         protected virtual void resetControls()
@@ -412,36 +405,6 @@ namespace CadEditor
                 objects[i] = new ObjRec(0,0,0,0,0,0);
             dirty = true;
             refillPanel();
-        }
-
-        protected void btFlipHorizontal_Click(object sender, EventArgs e)
-        {
-            var videoChunk = ConfigScript.getVideoChunk(curActiveVideo);
-            int beginIndex = 16 * curActiveBlock;
-            for (int line = 0; line < 8; line++)
-            {
-                videoChunk[beginIndex + line    ] = Utils.reverseBits(videoChunk[beginIndex + line]);
-                videoChunk[beginIndex + line + 8] = Utils.reverseBits(videoChunk[beginIndex + line + 8]); 
-            }
-            ConfigScript.setVideoChunk(curActiveVideo, videoChunk);
-            cbLevelSelect_SelectedIndexChanged(sender, e);
-        }
-
-        protected void btFlipVertical_Click(object sender, EventArgs e)
-        {
-            var videoChunk = ConfigScript.getVideoChunk(curActiveVideo);
-            int beginIndex = 16 * curActiveBlock;
-            Utils.swap(ref videoChunk[beginIndex + 0], ref videoChunk[beginIndex + 7]);
-            Utils.swap(ref videoChunk[beginIndex + 1], ref videoChunk[beginIndex + 6]);
-            Utils.swap(ref videoChunk[beginIndex + 2], ref videoChunk[beginIndex + 5]);
-            Utils.swap(ref videoChunk[beginIndex + 3], ref videoChunk[beginIndex + 4]);
-
-            Utils.swap(ref videoChunk[beginIndex + 8], ref videoChunk[beginIndex +15]);
-            Utils.swap(ref videoChunk[beginIndex + 9], ref videoChunk[beginIndex +14]);
-            Utils.swap(ref videoChunk[beginIndex +10], ref videoChunk[beginIndex +13]);
-            Utils.swap(ref videoChunk[beginIndex +11], ref videoChunk[beginIndex +12]);
-            ConfigScript.setVideoChunk(curActiveVideo, videoChunk);
-            cbLevelSelect_SelectedIndexChanged(sender, e);
         }
 
         protected void cbShowAxis_CheckedChanged(object sender, EventArgs e)
