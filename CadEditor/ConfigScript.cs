@@ -46,9 +46,6 @@ namespace CadEditor
     public delegate Screen[] LoadScreensFunc();
     public delegate void SaveScreensFunc(Screen[] screens);
 
-    public delegate int[] LoadPhysicsLayer(int scrNo);
-    public delegate void SavePhysicsLayer(int scrNo, int[] data);
-
     public delegate int GetPalBytesAddrFunc(int blockId);
 
     public class ConfigScript
@@ -255,10 +252,6 @@ namespace CadEditor
             loadScreensFunc = callFromScript<LoadScreensFunc>(asm, data, "*.loadScreensFunc");
             saveScreensFunc = callFromScript<SaveScreensFunc>(asm, data, "*.saveScreensFunc");
 
-            loadPhysicsLayerFunc = callFromScript<LoadPhysicsLayer>(asm, data, "*.loadPhysicsLayerFunc");
-            savePhysicsLayerFunc = callFromScript<SavePhysicsLayer>(asm, data, "*.savePhysicsLayerFunc");
-            physicsBlocksCount = callFromScript(asm, data, "*.getPhysicsBlocksCount", 256);
-
             if (blocksPicturesFilename != "")
             {
                 if (!File.Exists(ConfigScript.getBlocksPicturesFilename()))
@@ -274,7 +267,6 @@ namespace CadEditor
             getGroupsFunc = callFromScript<GetGroupsFunc>(asm, data, "*.getGroupsFunc", () => new GroupRec[0]);
 
             palBytesAddr = callFromScript(asm, data, "*.getPalBytesAddr", -1);
-            physicsBytesAddr = callFromScript(asm, data, "*.getPhysicsBytesAddr", -1);
             getPalBytesAddrFunc = callFromScript<GetPalBytesAddrFunc>(asm, data, "*.getPalBytesAddrFunc");
 
             defaultScale = callFromScript(asm, data, "*.getDefaultScale", -1.0f);
@@ -473,11 +465,6 @@ namespace CadEditor
             return getBlocksCountFunc?.Invoke(blockId)?? blocksCount;
         }
 
-        public static int getPhysicsBlocksCount()
-        {
-            return physicsBlocksCount;
-        }
-
         public static IList<LevelRec> getLevelRecs()
         {
             return getLevelRecsFunc();
@@ -561,11 +548,6 @@ namespace CadEditor
         public static int getPalBytesAddr(int blockId)
         {
             return getPalBytesAddrFunc?.Invoke(blockId) ?? palBytesAddr;
-        }
-
-        public static int getPhysicsBytesAddr()
-        {
-            return physicsBytesAddr;
         }
 
         public static float getDefaultScale()
@@ -716,10 +698,6 @@ namespace CadEditor
         public static LoadScreensFunc loadScreensFunc;
         public static SaveScreensFunc saveScreensFunc;
 
-        public static LoadPhysicsLayer loadPhysicsLayerFunc;
-        public static SavePhysicsLayer savePhysicsLayerFunc;
-        public static int physicsBlocksCount;
-
         public static float defaultScale;
 
         public static bool showScrollsInLayout;
@@ -733,7 +711,6 @@ namespace CadEditor
         public static GetGroupsFunc getGroupsFunc;
 
         public static int palBytesAddr;
-        public static int physicsBytesAddr;
         public static GetPalBytesAddrFunc getPalBytesAddrFunc;
 
         public static string[] blockTypeNames;

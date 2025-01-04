@@ -240,15 +240,12 @@ namespace CadEditor
 
             //show brush
             bool altPressed = ModifierKeys == Keys.Alt;
-            if (!isPhysicsLayerSelected()) //not show brush if physics editing
+            if (showBrush && curActiveBlock != -1 && (curDx != Outside || curDy != Outside) && !altPressed)
             {
-                if (showBrush && curActiveBlock != -1 && (curDx != Outside || curDy != Outside) && !altPressed)
-                {
-                    var tx = (curDx + 1) * tileSizeX;
-                    var ty = curDy * tileSizeY;
-                    var tileRect = new Rectangle(tx, ty, tileSizeX, tileSizeY);
-                    g.DrawImage(bigBlocks[curActiveBlock], tileRect);
-                }
+                var tx = (curDx + 1) * tileSizeX;
+                var ty = curDy * tileSizeY;
+                var tileRect = new Rectangle(tx, ty, tileSizeX, tileSizeY);
+                g.DrawImage(bigBlocks[curActiveBlock], tileRect);
             }
 
             if (altPressed && selectionRect)
@@ -566,7 +563,6 @@ namespace CadEditor
         public int screenNo { get; private set; }
 
         public bool additionalRenderEnabled { get; private set; } = true;
-        public bool physicsLayerEnabled { get; private set; } = false;
 
         public float curScale { get; private set; } = 2.0f;
 
@@ -636,7 +632,7 @@ namespace CadEditor
             if (ee.X < 0) { ee.X += 32768 * 2; }
             if (ee.Y < 0) { ee.Y += 32768 * 2; }
 
-            if (!isPhysicsLayerSelected() && selectionRect)
+            if (selectionRect)
             {
                 convertMouseToDxDy(ee, out selectionEndX, out selectionEndY);
                 if (selectionEndX < selectionBeginX)
@@ -708,8 +704,6 @@ namespace CadEditor
             var g = e.Graphics;
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
             g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
-
-            bool renderPhysics = isPhysicsLayerSelected();
             
             var renderParams = new MapEditor.RenderParams
             {
@@ -717,10 +711,10 @@ namespace CadEditor
                 visibleRect = UtilsGui.getVisibleRectangle(pnBlocks, blocksScreen),
                 curScale = curScale,
                 showBlocksAxis = showAxis,
-                renderBlockFunc = renderPhysics ? MapEditor.renderPhysicsOnPanelFunc : MapEditor.renderBlocksOnPanelFunc
+                renderBlockFunc = MapEditor.renderBlocksOnPanelFunc
             };
 
-            int blocksCount = renderPhysics ? ConfigScript.getPhysicsBlocksCount() : bigBlocks.Length; //hardcode physics blocks count
+            int blocksCount = bigBlocks.Length;
             MapEditor.renderAllBlocks(g, blocksScreen, curActiveBlock, blocksCount, renderParams);
         }
 
@@ -733,8 +727,7 @@ namespace CadEditor
             int tx = x / tileSizeX, ty = y / tileSizeY;
             int maxtX = blocksScreen.Width / tileSizeX;
             int index = ty * maxtX + tx;
-            bool renderPhysics = isPhysicsLayerSelected();
-            int maxIndex = renderPhysics ? ConfigScript.getPhysicsBlocksCount() : bigBlocks.Length;
+            int maxIndex = bigBlocks.Length;
             if ((tx < 0) || (tx >= maxtX) || (index < 0) || (index >= maxIndex))
             {
                 return;
@@ -859,14 +852,9 @@ namespace CadEditor
             return screens[screenNo];
         }
 
-        private bool isPhysicsLayerSelected()
-        {
-            return false;
-        }
-
         private BlockLayer getActiveLayer(Screen curScreen)
         {
-            return isPhysicsLayerSelected() ? curScreen.physicsLayer: curScreen.layers[curActiveLayer];
+            return curScreen.layers[curActiveLayer];
         }
     }
 }

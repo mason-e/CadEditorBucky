@@ -18,8 +18,6 @@ namespace CadEditor
                 renderLayer(g, layer, renderParams);
             }
 
-            renderLayer(g, curScreen.physicsLayer, new RenderParams(renderParams) { renderBlockFunc = renderPhysicsBlock });
-
             if (renderParams.showBorder)
             {
                 int tileSizeX = (int)(renderParams.bigBlocks[0].Width * renderParams.curScale);
@@ -54,13 +52,6 @@ namespace CadEditor
             }
         }
 
-        private static void renderPhysicsBlock(Graphics g, int bigBlockNo, Rectangle tileRect, RenderParams renderParams)
-        {
-            g.DrawRectangle(new Pen(Color.Red, 2.0f), tileRect);
-            g.FillRectangle(new SolidBrush(Color.FromArgb(128, 255, 255, 255)), tileRect);
-            g.DrawString(String.Format("{0:X2}", bigBlockNo), new Font("Arial", 8), Brushes.Red, tileRect.X + 8, tileRect.Y);
-        }
-
         private static void renderBlockOnPanel(Graphics g, int bigBlockNo, Rectangle tileRect, RenderParams renderParams)
         {
             if (bigBlockNo > -1 && bigBlockNo < renderParams.bigBlocks.Length)
@@ -75,7 +66,6 @@ namespace CadEditor
         }
 
         public static RenderParams.RenderBlockFunc renderBlocksOnPanelFunc = renderBlockOnPanel;
-        public static RenderParams.RenderBlockFunc renderPhysicsOnPanelFunc = renderPhysicsBlock;
 
         public static void renderAllBlocks(Graphics g, PictureBox parentControl, int activeBlock, int renderBlocksCount, RenderParams renderParams)
         {
