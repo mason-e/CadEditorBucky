@@ -53,10 +53,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.lbReadOnly = new System.Windows.Forms.Label();
             this.btClear = new System.Windows.Forms.Button();
-            this.btFlipHorizontal = new System.Windows.Forms.Button();
-            this.btFlipVertical = new System.Windows.Forms.Button();
             this.cbShowAxis = new System.Windows.Forms.CheckBox();
             this.lbActive = new System.Windows.Forms.Label();
             this.lbPanelNo = new System.Windows.Forms.Label();
@@ -307,16 +304,6 @@
             this.label10.TabIndex = 21;
             this.label10.Text = "No:";
             // 
-            // lbReadOnly
-            // 
-            this.lbReadOnly.AutoSize = true;
-            this.lbReadOnly.Location = new System.Drawing.Point(276, 11);
-            this.lbReadOnly.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbReadOnly.Name = "lbReadOnly";
-            this.lbReadOnly.Size = new System.Drawing.Size(88, 17);
-            this.lbReadOnly.TabIndex = 22;
-            this.lbReadOnly.Text = "READ ONLY";
-            // 
             // btClear
             // 
             this.btClear.Location = new System.Drawing.Point(780, 597);
@@ -327,28 +314,6 @@
             this.btClear.Text = "Clear all";
             this.btClear.UseVisualStyleBackColor = true;
             this.btClear.Click += new System.EventHandler(this.btClear_Click);
-            // 
-            // btFlipHorizontal
-            // 
-            this.btFlipHorizontal.Location = new System.Drawing.Point(20, 542);
-            this.btFlipHorizontal.Margin = new System.Windows.Forms.Padding(4);
-            this.btFlipHorizontal.Name = "btFlipHorizontal";
-            this.btFlipHorizontal.Size = new System.Drawing.Size(100, 28);
-            this.btFlipHorizontal.TabIndex = 0;
-            this.btFlipHorizontal.Text = "Flip horiz-tal";
-            this.btFlipHorizontal.UseVisualStyleBackColor = true;
-            this.btFlipHorizontal.Click += new System.EventHandler(this.btFlipHorizontal_Click);
-            // 
-            // btFlipVertical
-            // 
-            this.btFlipVertical.Location = new System.Drawing.Point(124, 542);
-            this.btFlipVertical.Margin = new System.Windows.Forms.Padding(4);
-            this.btFlipVertical.Name = "btFlipVertical";
-            this.btFlipVertical.Size = new System.Drawing.Size(100, 28);
-            this.btFlipVertical.TabIndex = 24;
-            this.btFlipVertical.Text = "Flip vertical";
-            this.btFlipVertical.UseVisualStyleBackColor = true;
-            this.btFlipVertical.Click += new System.EventHandler(this.btFlipVertical_Click);
             // 
             // cbShowAxis
             // 
@@ -412,10 +377,7 @@
             this.Controls.Add(this.cbPanelNo);
             this.Controls.Add(this.lbActive);
             this.Controls.Add(this.cbShowAxis);
-            this.Controls.Add(this.btFlipVertical);
-            this.Controls.Add(this.btFlipHorizontal);
             this.Controls.Add(this.btClear);
-            this.Controls.Add(this.lbReadOnly);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -473,10 +435,7 @@
         private System.Windows.Forms.ComboBox cbTileset;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label lbReadOnly;
         private System.Windows.Forms.Button btClear;
-        private System.Windows.Forms.Button btFlipHorizontal;
-        private System.Windows.Forms.Button btFlipVertical;
         private System.Windows.Forms.CheckBox cbShowAxis;
         private System.Windows.Forms.Label lbActive;
         private System.Windows.Forms.Label lbPanelNo;

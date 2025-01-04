@@ -8,12 +8,9 @@ using CSScriptLibrary;
 
 namespace CadEditor
 {
-    public delegate int   GetVideoPageAddrFunc(int videoPageId);
     public delegate byte[] GetVideoChunkFunc(int videoPageId);
     public delegate void   SetVideoChunkFunc(int videoPageId, byte[] videoChunk);
 
-    public delegate ObjRec[] GetBlocksFunc(int blockId);
-    public delegate void   SetBlocksFunc(int blockIndex, ObjRec[] blocksData);
     public delegate int GetBlocksAddrFunc(int blockId);
     public delegate int GetBlocksCountFunc(int blockId);
 
@@ -23,7 +20,6 @@ namespace CadEditor
     public delegate int GetBigBlocksCountFunc(int hierLevel, int bigBlockId);
 
     public delegate byte[] GetPalFunc(int palId);
-    public delegate void   SetPalFunc(int palId, byte[] pallete);
 
     public delegate GroupRec[] GetGroupsFunc();
     public delegate IList<LevelRec> GetLevelRecsFunc();
@@ -50,9 +46,6 @@ namespace CadEditor
     public delegate Screen[] LoadScreensFunc();
     public delegate void SaveScreensFunc(Screen[] screens);
 
-    public delegate int[] LoadPhysicsLayer(int scrNo);
-    public delegate void SavePhysicsLayer(int scrNo, int[] data);
-
     public delegate int GetPalBytesAddrFunc(int blockId);
 
     public class ConfigScript
@@ -61,7 +54,7 @@ namespace CadEditor
         {
             //add pathes for including scripts
             var globalSettings = CSScript.GlobalSettings;
-            globalSettings.AddSearchDir("./settings_nes");
+            globalSettings.AddSearchDir("./game_settings");
         }
         public static void LoadGlobalsFromFile(string fileName)
         {
@@ -71,25 +64,11 @@ namespace CadEditor
                 object data = asm.CreateObject("Config");
                 romName = callFromScript(asm, data, "*.getFileName", "");
                 cfgName = callFromScript(asm, data, "*.getConfigName", "");
-                dumpName = callFromScript(asm, data, "*.getDumpName", "");
                 nesColors = callFromScript<Color[]>(asm, data, "*.getNesColors", null);
             }
             catch (Exception)
             {
             }
-        }
-
-        public static void LoadStringsFromFile(string fileName)
-        {
-            /*try
-            {
-                var asm = new AsmHelper(CSScript.Load(fileName));
-                object data = asm.CreateObject("Strings");
-                Strings.FormMainName = callFromScript(asm, data, "*.getStrings", "");
-            }
-            catch (Exception)
-            {
-            }*/
         }
 
         private static void addPlugin(string pluginName)
@@ -107,21 +86,6 @@ namespace CadEditor
             }
             catch (Exception)
             {
-            }
-        }
-
-        public static bool PreloadShowDumpField(string fileName)
-        {
-            try
-            {
-                var asm = new AsmHelper(CSScript.LoadCode(File.ReadAllText(fileName)));
-                var data = asm.CreateObject("Data");
-                bool showDump = callFromScript(asm, data, "*.showDumpFileField", false);
-                return showDump;
-            }
-            catch (Exception)
-            {
-                return false;
             }
         }
 
@@ -190,7 +154,6 @@ namespace CadEditor
             wordLen = callFromScript(asm, data, "*.getWordLen", 1);
             littleEndian = callFromScript(asm, data, "*.isLittleEndian", false);
             blockSize4x4 = callFromScript(asm, data, "*.isBlockSize4x4", false);
-            buildScreenFromSmallBlocks = callFromScript(asm, data, "isBuildScreenFromSmallBlocks", false);
             getLevelRecsFunc = callFromScript<GetLevelRecsFunc>(asm, data, "*.getLevelRecsFunc", ConfigScript.getLevelRecsFuncDefault());
 
             //todo: remove or change to many lists interface
@@ -218,7 +181,6 @@ namespace CadEditor
             }
             bigBlocksOffsets[0] = callFromScript(asm, data, "*.getBigBlocksOffset", bigBlocksOffsets[0]);
 
-            getVideoPageAddrFunc = callFromScript <GetVideoPageAddrFunc>(asm, data, "*.getVideoPageAddrFunc");
             getVideoChunkFunc = callFromScript<GetVideoChunkFunc>(asm, data, "*.getVideoChunkFunc");
             setVideoChunkFunc = callFromScript<SetVideoChunkFunc>(asm, data, "*.setVideoChunkFunc");
 
@@ -229,18 +191,9 @@ namespace CadEditor
             getBigBlocksFuncs = callFromScript<GetBigBlocksFunc[]>(asm, data, "*.getBigBlocksFuncs", new GetBigBlocksFunc[1]);
             setBigBlocksFuncs = callFromScript<SetBigBlocksFunc[]>(asm, data, "*.setBigBlocksFuncs", new SetBigBlocksFunc[1]);
             getBigBlocksAddrFuncs = callFromScript<GetBigBlocksAddrFunc[]>(asm, data, "*.getBigBlocksAddrFuncs", new GetBigBlocksAddrFunc[1]);
-            if (!buildScreenFromSmallBlocks)
-            {
-                getBigBlocksFuncs[0] = callFromScript<GetBigBlocksFunc>(asm, data, "*.getBigBlocksFunc", getBigBlocksFuncs[0]);
-                setBigBlocksFuncs[0] = callFromScript<SetBigBlocksFunc>(asm, data, "*.setBigBlocksFunc", setBigBlocksFuncs[0]);
-                getBigBlocksAddrFuncs[0] = callFromScript<GetBigBlocksAddrFunc>(asm, data, "*.getBigBlocksAddrFunc", getBigBlocksAddrFuncs[0]);
-            }
 
-            getBlocksFunc = callFromScript<GetBlocksFunc>(asm,data,"*.getBlocksFunc");
-            setBlocksFunc = callFromScript<SetBlocksFunc>(asm, data, "*.setBlocksFunc");
             getBlocksAddrFunc = callFromScript<GetBlocksAddrFunc> (asm, data, "*.getBlocksAddrFunc");
             getPalFunc = callFromScript<GetPalFunc>(asm, data, "*.getPalFunc");
-            setPalFunc = callFromScript<SetPalFunc>(asm, data, "*.setPalFunc");
             getObjectsFunc = callFromScript<GetObjectsFunc>(asm, data, "*.getObjectsFunc");
             setObjectsFunc = callFromScript<SetObjectsFunc>(asm, data, "*.setObjectsFunc");
             sortObjectsFunc = callFromScript<SortObjectsFunc>(asm, data, "*.sortObjectsFunc");
@@ -258,9 +211,6 @@ namespace CadEditor
 
             renderToMainScreenFunc = callFromScript<RenderToMainScreenFunc>(asm, data, "*.getRenderToMainScreenFunc");
 
-            isBlockEditorEnabled = callFromScript(asm, data, "*.isBlockEditorEnabled", true);
-            objTypesPicturesDir = callFromScript(asm, data, "*.getObjTypesPicturesDir", "obj_sprites");
-
             showScrollsInLayout = callFromScript(asm, data, "*.isShowScrollsInLayout", true);
             scrollsOffsetFromLayout = callFromScript(asm, data, "*.getScrollsOffsetFromLayout", 0);
             scrollByteArray = callFromScript(asm, data, "*.getScrollByteArray", new byte[0]);
@@ -272,10 +222,6 @@ namespace CadEditor
 
             loadScreensFunc = callFromScript<LoadScreensFunc>(asm, data, "*.loadScreensFunc");
             saveScreensFunc = callFromScript<SaveScreensFunc>(asm, data, "*.saveScreensFunc");
-
-            loadPhysicsLayerFunc = callFromScript<LoadPhysicsLayer>(asm, data, "*.loadPhysicsLayerFunc");
-            savePhysicsLayerFunc = callFromScript<SavePhysicsLayer>(asm, data, "*.savePhysicsLayerFunc");
-            physicsBlocksCount = callFromScript(asm, data, "*.getPhysicsBlocksCount", 256);
 
             if (blocksPicturesFilename != "")
             {
@@ -292,7 +238,6 @@ namespace CadEditor
             getGroupsFunc = callFromScript<GetGroupsFunc>(asm, data, "*.getGroupsFunc", () => new GroupRec[0]);
 
             palBytesAddr = callFromScript(asm, data, "*.getPalBytesAddr", -1);
-            physicsBytesAddr = callFromScript(asm, data, "*.getPhysicsBytesAddr", -1);
             getPalBytesAddrFunc = callFromScript<GetPalBytesAddrFunc>(asm, data, "*.getPalBytesAddrFunc");
 
             defaultScale = callFromScript(asm, data, "*.getDefaultScale", -1.0f);
@@ -341,11 +286,6 @@ namespace CadEditor
             plugins.Reverse();
         }
 
-        public static int getVideoPageAddr(int id)
-        {
-            return getVideoPageAddrFunc(id);
-        }
-
         public static byte[] getVideoChunk(int videoPageId)
         {
             return (getVideoChunkFunc ?? (_=>null))(videoPageId);
@@ -378,23 +318,17 @@ namespace CadEditor
 
         public static ObjRec[] getBlocks(int bigBlockId)
         {
-            return (getBlocksFunc ?? (_ => null))(bigBlockId);
+            return Utils.getBlocksFromTiles16Pal1(bigBlockId);
         }
 
         public static void setBlocks(int bIndex, ObjRec[] blocks)
         {
-            setBlocksFunc(bIndex, blocks);
+            Utils.setBlocksFromTiles16Pal1(bIndex, blocks);
         }
 
         public static byte[] getPal(int palId)
         {
             return (getPalFunc ?? (_ => null))(palId);
-        }
-
-
-        public static void setPal(int palId, byte[] pallete)
-        {
-            setPalFunc(palId, pallete);
         }
 
         public static List<ObjectList> getObjects(int levelNo)
@@ -502,11 +436,6 @@ namespace CadEditor
             return getBlocksCountFunc?.Invoke(blockId)?? blocksCount;
         }
 
-        public static int getPhysicsBlocksCount()
-        {
-            return physicsBlocksCount;
-        }
-
         public static IList<LevelRec> getLevelRecs()
         {
             return getLevelRecsFunc();
@@ -525,11 +454,6 @@ namespace CadEditor
         public static int getMinObjType()
         {
             return minObjType;
-        }
-
-        public static string getObjTypesPicturesDir()
-        {
-            return ConfigScript.ConfigDirectory + objTypesPicturesDir;
         }
 
         public static string[] getBlockTypeNames()
@@ -555,11 +479,6 @@ namespace CadEditor
         public static bool isLittleEndian()
         {
             return littleEndian;
-        }
-
-        public static bool isBuildScreenFromSmallBlocks()
-        {
-            return buildScreenFromSmallBlocks;
         }
 
         public static int getBlocksPicturesWidth()
@@ -600,11 +519,6 @@ namespace CadEditor
         public static int getPalBytesAddr(int blockId)
         {
             return getPalBytesAddrFunc?.Invoke(blockId) ?? palBytesAddr;
-        }
-
-        public static int getPhysicsBytesAddr()
-        {
-            return physicsBytesAddr;
         }
 
         public static float getDefaultScale()
@@ -703,7 +617,6 @@ namespace CadEditor
         public static int screenDataStride;
         public static int wordLen;
         public static bool littleEndian;
-        public static bool buildScreenFromSmallBlocks;
 
         public static bool useGbGraphics;
         public static bool blockSize4x4;
@@ -718,7 +631,6 @@ namespace CadEditor
         //public static IList<LevelRec> levelRecs;
         public static GetLevelRecsFunc getLevelRecsFunc;
 
-        public static GetVideoPageAddrFunc getVideoPageAddrFunc;
         public static GetVideoChunkFunc getVideoChunkFunc;
         public static SetVideoChunkFunc setVideoChunkFunc;
 
@@ -730,13 +642,10 @@ namespace CadEditor
         public static GetBigBlocksCountFunc getBigBlocksCountFunc;
 
         public static int blocksCount;
-        public static GetBlocksFunc getBlocksFunc;
-        public static SetBlocksFunc setBlocksFunc;
         public static GetBlocksAddrFunc getBlocksAddrFunc;
         public static GetBlocksCountFunc getBlocksCountFunc;
 
         public static GetPalFunc getPalFunc;
-        public static SetPalFunc setPalFunc;
 
         public static GetObjectsFunc getObjectsFunc;
         public static SetObjectsFunc setObjectsFunc;
@@ -760,13 +669,7 @@ namespace CadEditor
         public static LoadScreensFunc loadScreensFunc;
         public static SaveScreensFunc saveScreensFunc;
 
-        public static LoadPhysicsLayer loadPhysicsLayerFunc;
-        public static SavePhysicsLayer savePhysicsLayerFunc;
-        public static int physicsBlocksCount;
-
         public static float defaultScale;
-
-        public static bool isBlockEditorEnabled;
 
         public static bool showScrollsInLayout;
         public static int scrollsOffsetFromLayout;
@@ -774,13 +677,11 @@ namespace CadEditor
 
         public static bool usePicturesInstedBlocks;
         public static int blocksPicturesWidth;
-        public static string objTypesPicturesDir;
         private static string blocksPicturesFilename;
 
         public static GetGroupsFunc getGroupsFunc;
 
         public static int palBytesAddr;
-        public static int physicsBytesAddr;
         public static GetPalBytesAddrFunc getPalBytesAddrFunc;
 
         public static string[] blockTypeNames;
@@ -788,7 +689,6 @@ namespace CadEditor
 
         //global editor settings
         public static string  romName;
-        public static string dumpName;
         public static string  cfgName;
         public static Color[] nesColors;
 

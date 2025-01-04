@@ -16,7 +16,7 @@ namespace CadEditor
         {
         }
 
-        public static bool loadData(string filename, string dumpfile, string configFilename)
+        public static bool loadData(string filename, string configFilename)
         {
             try
             {
@@ -30,24 +30,6 @@ namespace CadEditor
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Load rom error");
-                return false;
-            }
-
-            try
-            {
-                if (dumpfile != "")
-                {
-                    int size = (int)new FileInfo(dumpfile).Length;
-                    using (FileStream f = File.OpenRead(dumpfile))
-                    {
-                        dumpdata = new byte[size];
-                        f.Read(dumpdata, 0, size);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Load dump error");
                 return false;
             }
             
@@ -66,23 +48,6 @@ namespace CadEditor
 
         public static bool flushToFile()
         {
-            if (OpenFile.dumpName != "")
-            {
-                try
-                {
-                    using (FileStream f = File.OpenWrite(OpenFile.dumpName))
-                    {
-                        f.Write(Globals.dumpdata, 0, Globals.dumpdata.Length);
-                        f.Seek(0, SeekOrigin.Begin);
-                    }
-                }
-
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    return false;
-                }
-            }
             try
             {
                 using (FileStream f = File.OpenWrite(OpenFile.fileName))
@@ -125,7 +90,7 @@ namespace CadEditor
         public static Screen getScreen(OffsetRec screenOffset,  int screenIndex)
         {
             var result = new int[Math.Max(64, screenOffset.recSize)];
-            var arrayWithData = Globals.dumpdata != null ? Globals.dumpdata : Globals.romdata;
+            var arrayWithData = Globals.romdata;
             int dataStride = ConfigScript.getScreenDataStride();
             int wordLen = ConfigScript.getWordLen();
             //bool littleEndian = ConfigScript.isLittleEndian();
@@ -146,7 +111,6 @@ namespace CadEditor
         }
 
         public static byte[] romdata;
-        public static byte[] dumpdata;
         public static int chunksCount = 256;
         public static int videoPageSize = 4096;
         public static int palLen = 16;

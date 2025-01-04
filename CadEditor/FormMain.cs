@@ -20,7 +20,7 @@ namespace CadEditor
 
         private void setDefaultScale()
         {
-            curScale = ConfigScript.isBuildScreenFromSmallBlocks() ? 1 : 2;
+            curScale = 1;
             if (ConfigScript.getDefaultScale() > 0)
             {
                 curScale = ConfigScript.getDefaultScale();
@@ -40,7 +40,7 @@ namespace CadEditor
             }
             else
             {
-                if (!Globals.loadData(OpenFile.fileName, OpenFile.dumpName, OpenFile.configName))
+                if (!Globals.loadData(OpenFile.fileName, OpenFile.configName))
                 {
                     Close();
                     return;
@@ -111,39 +111,17 @@ namespace CadEditor
             reloadGameType();
             changeLevelIndex(true);
 
-            bttBlocks.Enabled = ConfigScript.isBlockEditorEnabled;
+            bttBlocks.Enabled = true;
 
-            bool isTwoLayers = getLayersCount() > 1;
-            bool isPhysicsLayer = ConfigScript.loadPhysicsLayerFunc != null;
-            bool isAdditionalRender = ConfigScript.renderToMainScreenFunc != null;
-
-            bttShowLayer1.Visible = isTwoLayers || isPhysicsLayer;
-            bttShowLayer2.Visible = isTwoLayers;
-
-            bttAdditionalRender.Visible = isAdditionalRender;
-            bttPhysicsLayerRender.Checked = false;
-            bttPhysicsLayerRender.Visible = isPhysicsLayer;
-
-            bttLayer.Visible = isTwoLayers || isPhysicsLayer;
             tsLayer1.Enabled = true;
-            tsLayer2.Enabled = isTwoLayers;
-            tsLayerPhysics.Enabled = isPhysicsLayer;
 
             curActiveLayer = 0;
-            physicsLayerSelected = false;
-            updateLayersMenuItemsChecked(curActiveLayer);
 
             pnGroups.Visible = ConfigScript.getGroups().Length > 0;
 
             updateScaleMenuItemsChecked(Array.FindIndex(scaleFactors, el => el == curScale)); //float comparasion with == is danger
-            updateLayersMenuItemsChecked(curActiveLayer);
             
             resetMapScreenSize();
-        }
-
-        private int getLayersCount()
-        {
-            return screens[screenNo].layers.Length;
         }
 
         void resetMapScreenSize()
@@ -262,15 +240,12 @@ namespace CadEditor
 
             //show brush
             bool altPressed = ModifierKeys == Keys.Alt;
-            if (!isPhysicsLayerSelected()) //not show brush if physics editing
+            if (showBrush && curActiveBlock != -1 && (curDx != Outside || curDy != Outside) && !altPressed)
             {
-                if (showBrush && curActiveBlock != -1 && (curDx != Outside || curDy != Outside) && !altPressed)
-                {
-                    var tx = (curDx + 1) * tileSizeX;
-                    var ty = curDy * tileSizeY;
-                    var tileRect = new Rectangle(tx, ty, tileSizeX, tileSizeY);
-                    g.DrawImage(bigBlocks[curActiveBlock], tileRect);
-                }
+                var tx = (curDx + 1) * tileSizeX;
+                var ty = curDy * tileSizeY;
+                var tileRect = new Rectangle(tx, ty, tileSizeX, tileSizeY);
+                g.DrawImage(bigBlocks[curActiveBlock], tileRect);
             }
 
             if (altPressed && selectionRect)
@@ -299,7 +274,6 @@ namespace CadEditor
         private bool curClicked;
 
         private int curActiveLayer;
-        private bool physicsLayerSelected;
 
         //select rect if alt pressed
         private int selectionBeginX, selectionBeginY, selectionEndX, selectionEndY;
@@ -495,7 +469,7 @@ namespace CadEditor
             var f = new OpenFile();
             if (f.ShowDialog() == DialogResult.OK)
             {
-                if (!Globals.loadData(OpenFile.fileName, OpenFile.dumpName, OpenFile.configName))
+                if (!Globals.loadData(OpenFile.fileName, OpenFile.configName))
                 {
                     Close();
                     return false;
@@ -589,7 +563,6 @@ namespace CadEditor
         public int screenNo { get; private set; }
 
         public bool additionalRenderEnabled { get; private set; } = true;
-        public bool physicsLayerEnabled { get; private set; } = false;
 
         public float curScale { get; private set; } = 2.0f;
 
@@ -659,7 +632,7 @@ namespace CadEditor
             if (ee.X < 0) { ee.X += 32768 * 2; }
             if (ee.Y < 0) { ee.Y += 32768 * 2; }
 
-            if (!isPhysicsLayerSelected() && selectionRect)
+            if (selectionRect)
             {
                 convertMouseToDxDy(ee, out selectionEndX, out selectionEndY);
                 if (selectionEndX < selectionBeginX)
@@ -695,49 +668,6 @@ namespace CadEditor
             dy = e.Y / (int)(bigBlocks[0].Height * curScale);
         }
 
-        private void bttShowLayer1_CheckedChanged(object sender, EventArgs e)
-        {
-            var screen = getActiveScreen(); //TODO: for all screens
-            screen.layers[0].showLayer = bttShowLayer1.Checked;
-            mapScreen.Invalidate();
-        }
-
-        private void bttShowLayer2_CheckedChanged(object sender, EventArgs e)
-        {
-            var screen = getActiveScreen(); //TODO: for all screens
-            screen.layers[1].showLayer = bttShowLayer2.Checked;
-            mapScreen.Invalidate();
-        }
-
-        private void bttLayer_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            int selectedItem = bttLayer.DropDownItems.IndexOf(e.ClickedItem);
-            if (selectedItem == 0)
-            {
-                curActiveLayer = 0;
-                physicsLayerSelected = false;
-            }
-            else if (selectedItem == 1)
-            {
-                curActiveLayer = 1;
-                physicsLayerSelected = false;
-            }
-            else if (selectedItem == 2)
-            {
-                curActiveLayer = -1;
-                physicsLayerSelected = true;
-            }
-            updateLayersMenuItemsChecked(curActiveLayer);
-            blocksScreen.Invalidate();
-        }
-
-        private void updateLayersMenuItemsChecked(int curActiveLayer)
-        {
-            (bttLayer.DropDownItems[0] as ToolStripMenuItem).Checked = curActiveLayer == 0;
-            (bttLayer.DropDownItems[1] as ToolStripMenuItem).Checked = curActiveLayer == 1;
-            (bttLayer.DropDownItems[2] as ToolStripMenuItem).Checked = isPhysicsLayerSelected();
-        }
-
         public void reloadCallback()
         {
             bttReload_Click(null, new EventArgs());
@@ -747,7 +677,7 @@ namespace CadEditor
         {
             if (UtilsGui.askToSave(ref dirty, saveToFile, returnCbLevelIndex))
             {
-                if (!Globals.loadData(OpenFile.fileName, OpenFile.dumpName, OpenFile.configName))
+                if (!Globals.loadData(OpenFile.fileName, OpenFile.configName))
                 {
                     return;
                 }
@@ -774,8 +704,6 @@ namespace CadEditor
             var g = e.Graphics;
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
             g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
-
-            bool renderPhysics = isPhysicsLayerSelected();
             
             var renderParams = new MapEditor.RenderParams
             {
@@ -783,10 +711,10 @@ namespace CadEditor
                 visibleRect = UtilsGui.getVisibleRectangle(pnBlocks, blocksScreen),
                 curScale = curScale,
                 showBlocksAxis = showAxis,
-                renderBlockFunc = renderPhysics ? MapEditor.renderPhysicsOnPanelFunc : MapEditor.renderBlocksOnPanelFunc
+                renderBlockFunc = MapEditor.renderBlocksOnPanelFunc
             };
 
-            int blocksCount = renderPhysics ? ConfigScript.getPhysicsBlocksCount() : bigBlocks.Length; //hardcode physics blocks count
+            int blocksCount = bigBlocks.Length;
             MapEditor.renderAllBlocks(g, blocksScreen, curActiveBlock, blocksCount, renderParams);
         }
 
@@ -799,8 +727,7 @@ namespace CadEditor
             int tx = x / tileSizeX, ty = y / tileSizeY;
             int maxtX = blocksScreen.Width / tileSizeX;
             int index = ty * maxtX + tx;
-            bool renderPhysics = isPhysicsLayerSelected();
-            int maxIndex = renderPhysics ? ConfigScript.getPhysicsBlocksCount() : bigBlocks.Length;
+            int maxIndex = bigBlocks.Length;
             if ((tx < 0) || (tx >= maxtX) || (index < 0) || (index >= maxIndex))
             {
                 return;
@@ -858,14 +785,8 @@ namespace CadEditor
                 toolStripSeparator4,
 
                 bttScale,
-                bttShowLayer1,
-                bttShowLayer2,
-                bttPhysicsLayerRender,
-                bttLayer,
-                bttAdditionalRender,
                 toolStripSeparator5,
 
-                tbbShowInfo,
                 tbbShowPluginInfo,
             };
 
@@ -880,26 +801,6 @@ namespace CadEditor
         private void bttScale_ButtonClick(object sender, EventArgs e)
         {
             bttScale.ShowDropDown();
-        }
-
-        private void bttAdditionalRender_CheckedChanged(object sender, EventArgs e)
-        {
-            additionalRenderEnabled = bttAdditionalRender.Checked;
-            mapScreen.Invalidate();
-        }
-
-        private void bttPhysicsLayerRender_CheckedChanged(object sender, EventArgs e)
-        {
-            physicsLayerEnabled = bttPhysicsLayerRender.Checked;
-            foreach (var screen in screens)
-            {
-                if (screen.physicsLayer != null)
-                {
-                    screen.physicsLayer.showLayer = physicsLayerEnabled;
-                }
-            }
-            mapScreen.Invalidate();
-            blocksScreen.Invalidate();
         }
 
         public void addToolButton(ToolStripItem item)
@@ -935,11 +836,6 @@ namespace CadEditor
               cbScreenNo.SelectedIndex = g.firstScreen - 1;
         }
 
-        private void tbbShowInfo_Click(object sender, EventArgs e)
-        {
-            new About().ShowDialog();
-        }
-
         private void setWindowText()
         {
             Text = String.Format("CAD Editor v5.3 - {0}", OpenFile.fileName);
@@ -950,14 +846,9 @@ namespace CadEditor
             return screens[screenNo];
         }
 
-        private bool isPhysicsLayerSelected()
-        {
-            return physicsLayerSelected;
-        }
-
         private BlockLayer getActiveLayer(Screen curScreen)
         {
-            return isPhysicsLayerSelected() ? curScreen.physicsLayer: curScreen.layers[curActiveLayer];
+            return curScreen.layers[curActiveLayer];
         }
     }
 }

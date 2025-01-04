@@ -54,7 +54,7 @@ namespace CadEditor
         public static byte[] getVideoChunk(int videoPageId)
         {
             byte[] videoChunk = new byte[Globals.videoPageSize];
-            int videoAddr = ConfigScript.getVideoPageAddr(videoPageId);
+            int videoAddr = -1;
             Array.Copy(Globals.romdata, videoAddr, videoChunk, 0, Globals.videoPageSize);
             return videoChunk;
         }
@@ -62,7 +62,7 @@ namespace CadEditor
         public static void setVideoChunk(int videoPageId, byte[] videoChunk)
         {
             //local version for cad & dwd
-            int videoAddr = ConfigScript.getVideoPageAddr(videoPageId);
+            int videoAddr = -1;
             for (int i = 0; i < Globals.videoPageSize; i++)
                 Globals.romdata[videoAddr + i] = videoChunk[i];
         }
@@ -640,15 +640,6 @@ namespace CadEditor
                 for (int scrI = 0; scrI < offsets[i].recCount; scrI++)
                 {
                     var screen = Globals.getScreen(offsets[i], scrI);
-                    if (ConfigScript.loadPhysicsLayerFunc != null)
-                    {
-                        screen.physicsLayer =
-                            new BlockLayer(ConfigScript.loadPhysicsLayerFunc(scrI))
-                            {
-                                showLayer = false
-                            }; //render disabled by default; 
-                    }
-
                     screens[currentScreen++] = screen;
                 }
             }
@@ -658,7 +649,7 @@ namespace CadEditor
         //save screensData from firstScreenIndex to ConfigScript.screensOffset[currentOffset]
         public static void saveScreensToOffset(OffsetRec screensRec, Screen[] screensData, int firstScreenIndex, int currentOffsetIndex, int layerNo)
         {
-            var arrayToSave = Globals.dumpdata != null ? Globals.dumpdata : Globals.romdata;
+            var arrayToSave = Globals.romdata;
             int wordLen = ConfigScript.getWordLen();
             bool littleEndian = ConfigScript.isLittleEndian();
             //write back tiles
@@ -690,12 +681,6 @@ namespace CadEditor
                         for (int x = 0; x < screensRec.recSize; x++)
                             Utils.writeWord(arrayToSave, addr + x * (dataStride * wordLen), ConfigScript.backConvertScreenTile(dataToWrite[x]));
                     }
-                }
-
-                //write physics info, if it present
-                if (curScreen.physicsLayer != null)
-                {
-                    ConfigScript.savePhysicsLayerFunc?.Invoke(curScrNo, curScreen.physicsLayer.data);
                 }
             }
         }

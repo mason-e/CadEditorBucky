@@ -134,27 +134,7 @@ namespace PluginVideoNes
             return res;
         }
 
-        public Bitmap makeImageStrip(byte[] videoChunk, byte[] pallete, int subPalIndex, bool withAlpha = false)
-        {
-            Bitmap res = new Bitmap(8 * chunkCount, 8);
-            using (Graphics g = Graphics.FromImage(res))
-            {
-                for (int i = 0; i < chunkCount; i++)
-                {
-                    Bitmap onePic = makeImage(i, videoChunk, pallete, subPalIndex, withAlpha);
-                    g.DrawImage(onePic, new Rectangle(i * 8, 0, 8, 8));
-                }
-            }
-            return res;
-        }
-
-        public Bitmap makeImageRectangle(byte[] videoChunk, byte[] pallete, int subPalIndex, bool withAlpha = false)
-        {
-            var images = Enumerable.Range(0, 256).Select(i => makeImage(i, videoChunk, pallete, subPalIndex, withAlpha));
-            return UtilsGDI.GlueImages(images.ToArray(), 16, 16);
-        }
-
-        public Bitmap[] makeObjects(ObjRec[] objects, Bitmap[][] objStrips, MapViewType drawType, int constantSubpal = -1)
+        private Bitmap[] makeObjects(ObjRec[] objects, Bitmap[][] objStrips, MapViewType drawType, int constantSubpal = -1)
         {
             var ans = new Bitmap[objects.Length];
             for (int index = 0; index < objects.Length; index++)
@@ -197,7 +177,7 @@ namespace PluginVideoNes
             return mblock;
         }
 
-        public Bitmap[] makeObjects(int videoPageId, int tilesId, int palId, MapViewType drawType, int constantSubpal = -1)
+        private Bitmap[] makeObjects(int videoPageId, int tilesId, int palId, MapViewType drawType, int constantSubpal = -1)
         {
             byte[] videoChunk = ConfigScript.getVideoChunk(videoPageId);
             ObjRec[] objects = ConfigScript.getBlocks(tilesId);
@@ -212,12 +192,6 @@ namespace PluginVideoNes
 
             var bitmaps = makeObjects(objects, objStrips, drawType, constantSubpal);
             return bitmaps;
-        }
-
-        public Bitmap makeObjectsStrip(int videoPageId, int tilesId, int palId, MapViewType drawType, int constantSubpal = -1)
-        {
-            var bitmaps = makeObjects(videoPageId, tilesId, palId, drawType, constantSubpal);
-            return UtilsGDI.GlueImages(bitmaps, bitmaps.Length, 1);
         }
 
          public Image[] makeBigBlocks(int videoNo, int bigBlockNo, int blockNo, int palleteNo, MapViewType smallObjectsViewType = MapViewType.Tiles,
@@ -264,46 +238,14 @@ namespace PluginVideoNes
             for (int btileId = 0; btileId < blockCount; btileId++)
             {
                 Image b;
-                if (ConfigScript.isBuildScreenFromSmallBlocks())
-                {
-                    var sb = smallBlocksPack[btileId];
-                    //scale for small blocks
-                    b = UtilsGDI.ResizeBitmap(sb, (int)(sb.Width * 2), (int)(sb.Height * 2));
-                }
-                else
-                {
-                    b = bigBlockIndexes[btileId].makeBigBlock(smallBlocksAll);
-                }
+                var sb = smallBlocksPack[btileId];
+                //scale for small blocks
+                b = UtilsGDI.ResizeBitmap(sb, (int)(sb.Width * 2), (int)(sb.Height * 2));
                 if (curViewType == MapViewType.ObjNumbers)
                     b = VideoHelper.addObjNumber(b, btileId);
                 bigBlocks[btileId] = b;
             }
             return bigBlocks;
-        }
-
-        //make capcom screen image
-        public Bitmap makeScreen(int scrNo, int levelNo, int videoNo, int bigBlockNo, int blockNo, int palleteNo, bool withBorders = true)
-        {
-            if (scrNo < 0)
-            {
-                return VideoHelper.emptyScreen(256, 256);
-                //return VideoHelper.emptyScreen((int)(ConfigScript.getScreenWidthDefault(levelNo) * 32), (int)(ConfigScript.getScreenWidthDefault(levelNo) * 32));
-            }
-            var bigBlocks = makeBigBlocks(videoNo, bigBlockNo, blockNo, palleteNo, MapViewType.Tiles, MapViewType.Tiles);
-            //var bigBlocks = makeBigBlocks(videoNo, bigBlockNo, blockNo, palleteNo, MapViewType.ObjType,MapViewType.Tiles, withBorders);
-            var screens = ConfigScript.loadScreens(); //Need to send it to function parameters to avoid reloads for every screen
-            Screen screen = screens[scrNo];
-            //capcom hardcode
-
-            return new Bitmap(MapEditor.screenToImage(screens, scrNo, new MapEditor.RenderParams
-            {
-                bigBlocks = bigBlocks,
-                curScale = 2.0f,
-                showBorder = false,
-                width = screen.width,
-                height = screen.height
-
-            }));
         }
 
         public Color[] defaultNesColors
