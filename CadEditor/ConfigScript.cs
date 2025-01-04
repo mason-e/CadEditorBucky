@@ -71,19 +71,6 @@ namespace CadEditor
             }
         }
 
-        public static void LoadStringsFromFile(string fileName)
-        {
-            /*try
-            {
-                var asm = new AsmHelper(CSScript.Load(fileName));
-                object data = asm.CreateObject("Strings");
-                Strings.FormMainName = callFromScript(asm, data, "*.getStrings", "");
-            }
-            catch (Exception)
-            {
-            }*/
-        }
-
         private static void addPlugin(string pluginName)
         {
             var plugin = PluginLoader.loadPlugin<IPlugin>(pluginName);
