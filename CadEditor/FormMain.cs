@@ -787,7 +787,6 @@ namespace CadEditor
                 bttScale,
                 toolStripSeparator5,
 
-                tbbShowInfo,
                 tbbShowPluginInfo,
             };
 
@@ -835,11 +834,6 @@ namespace CadEditor
             cbLevel_SelectedIndexChanged(cbVideoNo, new EventArgs());
             if (g.firstScreen < 0 || g.firstScreen <= cbScreenNo.Items.Count)
               cbScreenNo.SelectedIndex = g.firstScreen - 1;
-        }
-
-        private void tbbShowInfo_Click(object sender, EventArgs e)
-        {
-            new About().ShowDialog();
         }
 
         private void setWindowText()

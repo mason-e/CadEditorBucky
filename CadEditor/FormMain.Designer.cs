@@ -74,7 +74,6 @@
             this.tsLayer1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tbbShowPluginInfo = new System.Windows.Forms.ToolStripButton();
-            this.tbbShowInfo = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pnBlocks = new System.Windows.Forms.Panel();
             this.blocksScreen = new System.Windows.Forms.PictureBox();
@@ -418,8 +417,7 @@
             this.toolStripSeparator4,
             this.bttScale,
             this.toolStripSeparator5,
-            this.tbbShowPluginInfo,
-            this.tbbShowInfo});
+            this.tbbShowPluginInfo});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1431, 27);
@@ -599,16 +597,6 @@
             this.tbbShowPluginInfo.Size = new System.Drawing.Size(24, 24);
             this.tbbShowPluginInfo.Text = "Show plugins info";
             this.tbbShowPluginInfo.Click += new System.EventHandler(this.tbbShowPluginInfo_Click);
-            // 
-            // tbbShowInfo
-            // 
-            this.tbbShowInfo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbbShowInfo.Image = ((System.Drawing.Image)(resources.GetObject("tbbShowInfo.Image")));
-            this.tbbShowInfo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbbShowInfo.Name = "tbbShowInfo";
-            this.tbbShowInfo.Size = new System.Drawing.Size(24, 24);
-            this.tbbShowInfo.Text = "Show info";
-            this.tbbShowInfo.Click += new System.EventHandler(this.tbbShowInfo_Click);
             // 
             // splitContainer1
             // 
@@ -792,7 +780,6 @@
         private System.Windows.Forms.ToolStripButton tbbShowPluginInfo;
         private System.Windows.Forms.ComboBox cbGroup;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ToolStripButton tbbShowInfo;
         private System.Windows.Forms.CheckBox cbAdvanced;
         private System.Windows.Forms.Panel pnAdvancedParams;
         private System.Windows.Forms.Panel pnGroups;

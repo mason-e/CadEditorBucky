@@ -49,15 +49,8 @@ namespace CadEditor
             MapViewType curViewType = MapViewType.Tiles, int heirarchyLevel = 0);
 
         Bitmap makeImage(int index, byte[] videoChunk, byte[] pallete, int subPalIndex, bool withAlpha = false);
-        Bitmap makeImageStrip(byte[] videoChunk, byte[] pallete, int subPalIndex, bool withAlpha = false);
-        Bitmap makeImageRectangle(byte[] videoChunk, byte[] pallete, int subPalIndex, bool withAlpha = false);
 
-        Bitmap[] makeObjects(ObjRec[] objects, Bitmap[][] objStrips, MapViewType drawType, int constantSubpal = -1);
-        Bitmap[] makeObjects(int videoPageId, int tilesId, int palId, MapViewType drawType, int constantSubpal = -1);
         Bitmap makeObject(int index, ObjRec[] objects, Bitmap[][] objStrips, MapViewType drawType, int constantSubpal = -1);
-        Bitmap makeObjectsStrip(int videoPageId, int tilesId, int palId, MapViewType drawType, int constantSubpal = -1);
-
-        Bitmap makeScreen(int scrNo, int levelNo, int videoNo, int bigBlockNo, int blockNo, int palleteNo, bool withBorders = true);
 
         Color[] defaultNesColors { get; set; }
 
