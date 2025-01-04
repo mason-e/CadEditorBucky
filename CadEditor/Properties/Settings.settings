@@ -8,9 +8,6 @@
     <Setting Name="ConfigName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="DumpName" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="LastScript" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>

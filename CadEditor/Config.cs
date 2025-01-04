@@ -5,7 +5,6 @@ using System.Drawing;
 public class Config
 {
   public string getFileName()      { return ""; }
-  public string getDumpName()      { return ""; }
   public string getConfigName()    { return ""; }
   public Color[] getNesColors()
   {

@@ -33,19 +33,6 @@ namespace CadEditor
             {
                 cbConfigName.Text = ofOpenDialog.FileName;
                 updateCbConfigInDirectory(cbConfigName.Text);
-                var showDumpField = ConfigScript.PreloadShowDumpField(cbConfigName.Text);
-                updateDumpFieldVisible(showDumpField);
-            }
-        }
-
-        private void updateDumpFieldVisible(bool showDumpField)
-        {
-            tbDumpName.Enabled = showDumpField;
-            lbDumpName.Enabled = showDumpField;
-            btDumpSelect.Enabled = showDumpField;
-            if (!showDumpField)
-            {
-                tbDumpName.Text = "";
             }
         }
 
@@ -67,25 +54,14 @@ namespace CadEditor
             }
         }
 
-        private void tbDumpName_Click(object sender, EventArgs e)
-        {
-            ofOpenDialog.Filter = "";
-            if (ofOpenDialog.ShowDialog() == DialogResult.OK)
-            {
-                tbDumpName.Text = ofOpenDialog.FileName;
-            }
-        }
-
         private void btOpen_Click(object sender, EventArgs e)
         {
             fileName = tbFileName.Text;
             configName = cbConfigName.Text;
-            dumpName = ConfigScript.PreloadShowDumpField(configName) ? tbDumpName.Text : "";
             DialogResult = DialogResult.OK;
             Close();
 
             Properties.Settings.Default["FileName"] = fileName;
-            Properties.Settings.Default["DumpName"] = dumpName;
             Properties.Settings.Default["ConfigName"] = configName;
             Properties.Settings.Default.Save();
         }
@@ -97,27 +73,19 @@ namespace CadEditor
         }
 
         public static string fileName = "";
-        public static string dumpName = "";
         public static string configName="";
 
         private void OpenFile_Load(object sender, EventArgs e)
         {
             if (Properties.Settings.Default["FileName"].ToString() != "")
                 tbFileName.Text = Properties.Settings.Default["FileName"].ToString();
-            if (Properties.Settings.Default["DumpName"].ToString() != "")
-                tbDumpName.Text = Properties.Settings.Default["DumpName"].ToString();
             if (Properties.Settings.Default["ConfigName"].ToString() != "")
             {
                 cbConfigName.Text = Properties.Settings.Default["ConfigName"].ToString();
             }
 
-            var showDumpField = ConfigScript.PreloadShowDumpField(cbConfigName.Text);
-            updateDumpFieldVisible(showDumpField);
-
             if (fileName == "" && ConfigScript.romName != "")
                 tbFileName.Text = ConfigScript.romName;
-            if (dumpName == "" && ConfigScript.dumpName != "")
-                tbDumpName.Text = ConfigScript.dumpName;
             if (configName == "" && ConfigScript.cfgName != "")
             {
                 cbConfigName.Text = ConfigScript.cfgName;
@@ -130,8 +98,6 @@ namespace CadEditor
             {
                 cbConfigName.Text = configName;
             }
-            if (dumpName != "")
-                tbDumpName.Text = dumpName;
 
             updateCbConfigInDirectory(cbConfigName.Text);
         }

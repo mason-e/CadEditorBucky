@@ -649,7 +649,7 @@ namespace CadEditor
         //save screensData from firstScreenIndex to ConfigScript.screensOffset[currentOffset]
         public static void saveScreensToOffset(OffsetRec screensRec, Screen[] screensData, int firstScreenIndex, int currentOffsetIndex, int layerNo)
         {
-            var arrayToSave = Globals.dumpdata != null ? Globals.dumpdata : Globals.romdata;
+            var arrayToSave = Globals.romdata;
             int wordLen = ConfigScript.getWordLen();
             bool littleEndian = ConfigScript.isLittleEndian();
             //write back tiles

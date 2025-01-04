@@ -64,7 +64,6 @@ namespace CadEditor
                 object data = asm.CreateObject("Config");
                 romName = callFromScript(asm, data, "*.getFileName", "");
                 cfgName = callFromScript(asm, data, "*.getConfigName", "");
-                dumpName = callFromScript(asm, data, "*.getDumpName", "");
                 nesColors = callFromScript<Color[]>(asm, data, "*.getNesColors", null);
             }
             catch (Exception)
@@ -100,21 +99,6 @@ namespace CadEditor
             }
             catch (Exception)
             {
-            }
-        }
-
-        public static bool PreloadShowDumpField(string fileName)
-        {
-            try
-            {
-                var asm = new AsmHelper(CSScript.LoadCode(File.ReadAllText(fileName)));
-                var data = asm.CreateObject("Data");
-                bool showDump = callFromScript(asm, data, "*.showDumpFileField", false);
-                return showDump;
-            }
-            catch (Exception)
-            {
-                return false;
             }
         }
 
@@ -718,7 +702,6 @@ namespace CadEditor
 
         //global editor settings
         public static string  romName;
-        public static string dumpName;
         public static string  cfgName;
         public static Color[] nesColors;
 

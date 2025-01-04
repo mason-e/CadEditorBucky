@@ -50,18 +50,6 @@ namespace CadEditor.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DumpName {
-            get {
-                return ((string)(this["DumpName"]));
-            }
-            set {
-                this["DumpName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string LastScript {
             get {
                 return ((string)(this["LastScript"]));
