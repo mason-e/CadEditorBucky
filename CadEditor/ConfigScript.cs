@@ -54,7 +54,7 @@ namespace CadEditor
         {
             //add pathes for including scripts
             var globalSettings = CSScript.GlobalSettings;
-            globalSettings.AddSearchDir("./settings_nes");
+            globalSettings.AddSearchDir("./game_settings");
         }
         public static void LoadGlobalsFromFile(string fileName)
         {
